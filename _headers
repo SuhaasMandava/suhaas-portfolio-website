@@ -1,0 +1,13 @@
+# HTTP security headers for Netlify and Cloudflare Pages.
+# These enforce protections that a <meta> tag CANNOT — notably anti-framing
+# (X-Frame-Options / CSP frame-ancestors are ignored when set via <meta>).
+#
+# GitHub Pages does NOT support custom headers, so on GitHub Pages only the
+# <meta> CSP + Referrer-Policy in index.html apply, and framing cannot be blocked.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'; frame-ancestors 'none'
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()
