@@ -127,12 +127,18 @@ function initTheme() {
   const prefersLight =
     window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
 
+  // Initial theme is set WITHOUT the transition class, so the first paint doesn't animate.
   root.setAttribute("data-theme", stored || (prefersLight ? "light" : "dark"));
 
+  let themeTimer;
   toggle.addEventListener("click", () => {
     const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    // Enable the page-wide colour cross-fade just for the duration of the switch.
+    root.classList.add("theme-transition");
     root.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
+    clearTimeout(themeTimer);
+    themeTimer = setTimeout(() => root.classList.remove("theme-transition"), 450);
   });
 }
 
@@ -180,7 +186,8 @@ function initReveal() {
         }
       });
     },
-    { threshold: 0.12 }
+    // Trigger a touch before the element is fully on screen for a natural feel.
+    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
   );
   els.forEach((el) => observer.observe(el));
 }
