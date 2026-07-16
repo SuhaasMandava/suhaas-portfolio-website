@@ -3,34 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <!-- Content Security Policy: only self-hosted scripts/styles + the Google Fonts we actually use.
-       Note: frame-ancestors is intentionally omitted here because it is IGNORED in a <meta> CSP —
+       Note: frame-ancestors is intentionally omitted here because it is IGNORED in a <meta> CSP;
        anti-framing is enforced via HTTP headers instead (see _headers / vercel.json). -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Suhaas Mandava — Software Engineer. Projects, skills, and contact." />
-  <title>Suhaas Mandava — Software Engineer</title>
+  <meta name="description" content="Suhaas Mandava, high school student and software developer. Projects, skills, experience, and contact." />
+  <title>Suhaas Mandava, Software Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>" />
 </head>
 <body>
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <!-- Decorative thin circles (very subtle, behind everything) -->
+  <div class="deco deco--1" aria-hidden="true"></div>
+  <div class="deco deco--2" aria-hidden="true"></div>
+  <div class="deco deco--3" aria-hidden="true"></div>
+
   <!-- Navbar -->
   <header class="nav" id="nav">
     <div class="nav__inner container">
-      <a href="#hero" class="nav__brand">SM<span>.</span></a>
+      <a href="#top" class="nav__brand" data-magnetic>Suhaas<br />Mandava<span class="nav__dot">_</span></a>
       <nav class="nav__links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-nav="about">About</a>
+        <a href="#projects" data-nav="projects">Projects</a>
+        <a href="#skills" data-nav="skills">Skills</a>
+        <a href="#contact" data-nav="contact">Contact</a>
+        <span class="nav__indicator" id="navIndicator" aria-hidden="true"></span>
       </nav>
       <div class="nav__actions">
-        <button class="icon-btn" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
-          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme" data-magnetic>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
         <button class="icon-btn nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -39,126 +48,158 @@
     </div>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero" id="hero">
-      <div class="container hero__inner">
-        <p class="hero__eyebrow">Hi, my name is</p>
-        <h1 class="hero__name">Suhaas Mandava</h1>
-        <h2 class="hero__title">I build software for the web.</h2>
-        <p class="hero__lead">
-          Software Engineer focused on crafting fast, accessible, and thoughtfully
-          designed applications — from clean front-end interfaces to reliable back-end systems.
+  <main class="container" id="top">
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <canvas class="hero__grid" id="heroGrid" aria-hidden="true"></canvas>
+      <div class="hero__glow" id="heroGlow" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__kicker reveal">Hi, I'm Suhaas Mandava</p>
+        <h1 class="display hero__title reveal">
+          <span class="type" id="typeTarget">Student Developer</span><span class="type-caret" aria-hidden="true"></span>
+        </h1>
+        <p class="hero__lead reveal">
+          I started coding in late 2024 and I've been learning ever since. I'm a
+          high school student who cares about writing <em>clean, thoughtful code</em>,
+          not just finishing projects.
         </p>
-        <div class="hero__cta">
-          <a href="#projects" class="btn btn--primary">View my work</a>
-          <a href="#contact" class="btn btn--ghost">Get in touch</a>
-        </div>
-        <div class="hero__socials">
-          <a href="https://github.com/SuhaasMandava" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.39 1.24-3.23-.13-.31-.54-1.53.12-3.19 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.19.77.84 1.24 1.92 1.24 3.23 0 4.62-2.81 5.64-5.49 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/suhaas-mandava-247647365/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-          </a>
-          <a href="mailto:hasumandava@gmail.com" aria-label="Email">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        <div class="hero__actions reveal">
+          <a href="#projects" class="cta" data-magnetic>
+            <span class="cta__pill">View Projects</span>
+            <span class="cta__arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
           </a>
         </div>
-      </div>
-      <div class="hero__glow" aria-hidden="true"></div>
-    </section>
-
-    <!-- About -->
-    <section class="section" id="about">
-      <div class="container">
-        <h2 class="section__title"><span class="section__num">01.</span> About Me</h2>
-        <div class="about">
-          <div class="about__text">
-            <p>
-              I'm a software engineer who enjoys turning complex problems into simple,
-              elegant solutions. My interest in building for the web started with curiosity
-              about how the sites I used every day actually worked — and it grew into a
-              craft I care deeply about.
-            </p>
-            <p>
-              I like working across the stack: designing clean interfaces, wiring up APIs,
-              and shipping features that feel fast and intuitive. I care about performance,
-              accessibility, and writing code that's easy for the next person to read.
-            </p>
-            <p>
-              When I'm not coding, I'm usually exploring new tools, contributing to side
-              projects, or learning something outside of tech. Here are a few technologies
-              I've been working with recently:
-            </p>
-            <ul class="about__stack">
-              <li>JavaScript / TypeScript</li>
-              <li>React</li>
-              <li>Node.js</li>
-              <li>Python</li>
-              <li>PostgreSQL</li>
-              <li>Docker</li>
-            </ul>
-          </div>
-          <div class="about__aside">
-            <div class="about__card">
-              <div class="about__avatar">SM</div>
-              <p class="about__cardname">Suhaas Mandava</p>
-              <p class="about__cardrole">Software Engineer</p>
-              <ul class="about__facts">
-                <li><span>📍</span> Based in the US</li>
-                <li><span>💼</span> Open to opportunities</li>
-                <li><span>🎯</span> Full-stack development</li>
-              </ul>
-            </div>
-          </div>
+        <div class="social-row reveal">
+          <a class="pill" href="https://github.com/SuhaasMandava" target="_blank" rel="noopener noreferrer" data-magnetic>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.39 1.24-3.23-.13-.31-.54-1.53.12-3.19 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.19.77.84 1.24 1.92 1.24 3.23 0 4.62-2.81 5.64-5.49 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
+            GitHub
+          </a>
+          <a class="pill" href="https://www.linkedin.com/in/suhaas-mandava-247647365/" target="_blank" rel="noopener noreferrer" data-magnetic>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            LinkedIn
+          </a>
+          <a class="pill" href="mailto:hasumandava@gmail.com" data-magnetic>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            Email
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
+    <!-- ===== Stats ===== -->
+    <section class="stats" aria-label="Quick stats">
+      <div class="stat reveal"><span class="stat__num">2024</span><span class="stat__label">Started coding</span></div>
+      <div class="stat reveal"><span class="stat__num" data-count="1">0</span><span class="stat__label">CS50 completed</span></div>
+      <div class="stat reveal"><span class="stat__num" data-count="20" data-suffix="+">0</span><span class="stat__label">Technologies I'm exploring</span></div>
+      <div class="stat reveal"><span class="stat__num">&#8734;</span><span class="stat__label">Curiosity</span></div>
+    </section>
+
+    <!-- ===== Projects (featured carousel) ===== -->
     <section class="section" id="projects">
-      <div class="container">
-        <h2 class="section__title"><span class="section__num">02.</span> Projects</h2>
-        <p class="section__lead" id="projectsLead">A selection of things I've built. Each links out to its source on GitHub.</p>
-        <div class="projects" id="projectsGrid">
-          <!-- Cards injected by script.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section class="section" id="skills">
-      <div class="container">
-        <h2 class="section__title"><span class="section__num">03.</span> Skills</h2>
-        <div class="skills" id="skillsGrid">
-          <!-- Skill groups injected by script.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section section--contact" id="contact">
-      <div class="container contact">
-        <p class="section__num">04. What's next?</p>
-        <h2 class="contact__title">Get In Touch</h2>
-        <p class="contact__lead">
-          I'm currently open to new opportunities and collaborations. Whether you have a
-          question, a project in mind, or just want to say hi — my inbox is always open.
+      <div class="section__head reveal">
+        <p class="eyebrow">&hellip; /Projects &hellip;</p>
+        <p class="section__intro">
+          A few things I've been building. It's early days, but this is where my
+          projects will live as I make them.
         </p>
-        <a href="mailto:hasumandava@gmail.com" class="btn btn--primary btn--lg">Say Hello</a>
-        <div class="contact__socials">
-          <a href="https://github.com/SuhaasMandava" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://www.linkedin.com/in/suhaas-mandava-247647365/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="mailto:hasumandava@gmail.com">Email</a>
+      </div>
+
+      <div class="carousel reveal">
+        <button class="icon-circle carousel__nav" id="carouselPrev" aria-label="Previous project" data-magnetic>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        </button>
+        <div class="carousel__track" id="carouselTrack">
+          <!-- Feature cards injected by script.js -->
         </div>
+        <button class="icon-circle carousel__nav" id="carouselNext" aria-label="Next project" data-magnetic>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="section" id="about">
+      <p class="eyebrow reveal">&hellip; /About me &hellip;</p>
+      <div class="about">
+        <div class="about__intro reveal">
+          <p class="about__hello">
+            Hi, I'm Suhaas, a high school student who's still pretty new to
+            coding and <em>a little obsessed</em> with getting better at it.
+          </p>
+          <p>
+            I started in late 2024 and haven't really stopped since. Most of what
+            I know is self-taught. Honestly, YouTube tutorials and channels have
+            taught me more than my classes have, and finishing CS50 (Harvard's
+            Intro to Computer Science) was one of my first real milestones.
+          </p>
+          <p>
+            Right now I'm in high school taking AP Computer Science A, and I
+            recently started working part-time at
+            <a href="https://geoitlabs.com" target="_blank" rel="noopener noreferrer">Geo IT Labs</a>.
+            A lot of my learning still happens on my own time too: building small
+            projects and taking things apart to see how they work. I care less
+            about just finishing something and more about finding cleaner, smarter
+            ways to write it. Learning to think about code well is the part I
+            actually enjoy.
+          </p>
+          <div class="goals">
+            <span class="goals__label">Where I'm headed</span>
+            <p>Working toward <em>Georgia Tech</em>, with the long-term goal of building a career in <em>AI engineering</em>. That's the direction all of this is pointing.</p>
+          </div>
+        </div>
+        <!-- Swap this monogram frame for a real photo later: drop photo.jpg next to
+             index.html and set the frame's background image (img-src 'self' already allows it). -->
+        <div class="about__photo reveal">
+          <div class="photo-frame" data-tilt><span>SM</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <section class="section" id="skills">
+      <p class="eyebrow reveal">&hellip; /Skills &hellip;</p>
+      <p class="section__intro reveal">Some of the tools and technologies I build with.</p>
+      <div class="skills" id="skillsGrid">
+        <!-- Skill cards injected by script.js -->
+      </div>
+    </section>
+
+    <!-- ===== Experience ===== -->
+    <section class="section" id="experience">
+      <h2 class="display display--section reveal">Learning Journey</h2>
+      <div class="exp" id="expList">
+        <!-- Rows injected by script.js -->
+      </div>
+      <p class="exp__total reveal">Coding since <em>late 2024</em>, and just getting started.</p>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section class="section section--contact" id="contact">
+      <p class="eyebrow reveal">&hellip; /Contact &hellip;</p>
+      <h2 class="display display--section reveal">Let's build<br />something.</h2>
+      <p class="contact__lead reveal">
+        I'm always up for a good project, a question, or just to chat about code.
+        My inbox is open.
+      </p>
+      <a href="mailto:hasumandava@gmail.com" class="cta cta--center reveal" data-magnetic>
+        <span class="cta__pill">Say Hello</span>
+        <span class="cta__arrow" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+      <div class="social-row social-row--center reveal">
+        <a class="pill" href="https://github.com/SuhaasMandava" target="_blank" rel="noopener noreferrer" data-magnetic>GitHub</a>
+        <a class="pill" href="https://www.linkedin.com/in/suhaas-mandava-247647365/" target="_blank" rel="noopener noreferrer" data-magnetic>LinkedIn</a>
+        <a class="pill" href="mailto:hasumandava@gmail.com" data-magnetic>Email</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer__inner">
-      <p>Designed &amp; built by Suhaas Mandava · <a href="privacy-policy.html">Privacy Policy</a></p>
+      <p>Designed &amp; built by Suhaas Mandava · <a href="privacy-policy.html">Privacy Policy</a> · <a href="terms-of-use.html">Terms of Use</a></p>
       <button class="footer__top" id="backToTop" aria-label="Back to top">↑ Top</button>
     </div>
   </footer>
