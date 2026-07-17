@@ -14,3 +14,7 @@ desktop.ini
 .env.*
 
 .vercel
+
+# Local tooling (not site code)
+.claude/
+design-system/
