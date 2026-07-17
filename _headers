@@ -6,7 +6,7 @@
 # <meta> CSP + Referrer-Policy in index.html apply, and framing cannot be blocked.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-ElShUWg/R0NC6WIMZp3N2FKE5siI90ZKCnHMHJYcUhk='; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://vitals.vercel-insights.com; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'; frame-ancestors 'none'
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   X-Content-Type-Options: nosniff
