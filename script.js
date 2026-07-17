@@ -372,6 +372,42 @@ function initHeroBackground() {
 }
 
 // ==================================================================
+//  Hero background video (deferred load, muted loop; respects motion)
+// ==================================================================
+function initHeroVideo() {
+  const video = document.getElementById("heroVideo");
+  if (!video) return;
+  const source = video.querySelector("source[data-src]");
+  if (!source) return;
+
+  // Fade the video in only once the first frame has actually decoded.
+  video.addEventListener("loadeddata", () => video.classList.add("is-ready"), { once: true });
+
+  let loaded = false;
+  const loadVideo = () => {
+    if (loaded) return;
+    loaded = true;
+    source.src = source.dataset.src;
+    video.load();
+  };
+
+  // Reduced motion: load a single static frame and leave it paused (never autoplay).
+  if (reduceMotion()) { loadVideo(); return; }
+
+  // Otherwise defer the ~3MB fetch until the page has loaded and the main thread
+  // is idle, then play — so it never competes with first paint.
+  const start = () => {
+    loadVideo();
+    const p = video.play();
+    if (p && typeof p.catch === "function") p.catch(() => {}); // ignore autoplay rejections
+  };
+  const idle = (fn) =>
+    "requestIdleCallback" in window ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 300);
+  if (document.readyState === "complete") idle(start);
+  else window.addEventListener("load", () => idle(start), { once: true });
+}
+
+// ==================================================================
 //  7. Count-up stat numbers (on scroll into view)
 // ==================================================================
 function initCounters() {
@@ -550,6 +586,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollProgress();  // 4
   initCounters();        // 8
   initScrollSpy();       // 10
+  initHeroVideo();       // background video (deferred)
   initHeroBackground();  // 7
   initTilt();            // 5
   initMagnetic();        // 2

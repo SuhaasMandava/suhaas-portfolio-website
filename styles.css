@@ -45,6 +45,10 @@
   --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.85);
   --glow: 0 18px 50px -14px rgba(var(--accent-rgb), 0.45);
   --glow-2: 0 18px 50px -14px rgba(var(--accent-2-rgb), 0.45);
+  /* Hero video scrim: dark on the text side (left) + a bottom fade into the page. */
+  --hero-scrim:
+    linear-gradient(90deg, rgba(8, 10, 14, 0.92), rgba(8, 10, 14, 0.62) 52%, rgba(8, 10, 14, 0.38)),
+    linear-gradient(0deg, var(--bg) 2%, transparent 34%);
 }
 
 /* ---- Light theme ---- */
@@ -64,6 +68,10 @@
   --shadow: 0 24px 60px -28px rgba(16, 40, 28, 0.28);
   --glow: 0 18px 50px -16px rgba(var(--accent-rgb), 0.5);
   --glow-2: 0 18px 50px -16px rgba(var(--accent-2-rgb), 0.45);
+  /* Light theme keeps dark text readable: lighten the video instead of darkening it. */
+  --hero-scrim:
+    linear-gradient(90deg, rgba(243, 245, 244, 0.93), rgba(243, 245, 244, 0.72) 52%, rgba(243, 245, 244, 0.5)),
+    linear-gradient(0deg, var(--bg) 2%, transparent 34%);
 }
 
 /* ---- Reset / base ---- */
@@ -311,22 +319,55 @@ em { font-style: italic; color: var(--accent); font-weight: 500; }
    ============================================================ */
 main { position: relative; z-index: 1; }
 
-.hero { position: relative; padding: clamp(40px, 8vw, 96px) 0 70px; }
-.hero__grid { position: absolute; inset: -20px 0 0 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.9; }
+/* Stable height so the hero never reflows as the typing headline wraps between
+   1 and 2 lines. A flexing height would make object-fit:cover re-scale the
+   background video every reflow (the "pulsing zoom"); a fixed min-height fixes it. */
+.hero {
+  position: relative;
+  min-height: min(88vh, 880px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(40px, 8vw, 96px) 0 60px;
+  overflow: hidden;
+}
+
+/* Background video + scrim (behind the dot grid, glow, and content) */
+.hero__media {
+  position: absolute; inset: 0; z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Branded fallback shown until the first video frame is ready / for no-JS. */
+  background:
+    radial-gradient(120% 120% at 72% 12%, rgba(var(--accent-2-rgb), 0.16), transparent 55%),
+    radial-gradient(120% 120% at 14% 88%, rgba(var(--accent-rgb), 0.13), transparent 52%),
+    var(--bg);
+}
+.hero__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;      /* fill the hero on any aspect ratio, no distortion */
+  opacity: 0;             /* fade in once the first frame decodes */
+  transition: opacity 0.8s var(--ease-out);
+}
+.hero__video.is-ready { opacity: 1; }
+.hero__scrim { position: absolute; inset: 0; background: var(--hero-scrim); }
+
+.hero__grid { position: absolute; inset: -20px 0 0 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0.9; }
 .hero__glow {
   position: absolute;
   width: 480px; height: 480px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(var(--accent-rgb), 0.18), rgba(var(--accent-2-rgb), 0.10) 40%, transparent 70%);
   filter: blur(30px);
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
   transform: translate3d(-50%, -50%, 0);
   left: 50%; top: 40%;
   opacity: 0.9;
   will-change: transform;
 }
-.hero__content { position: relative; z-index: 1; }
+.hero__content { position: relative; z-index: 2; }
 .hero__kicker { font-family: var(--font-display); color: var(--accent); font-size: 1rem; margin-bottom: 16px; }
 .hero__title { font-size: clamp(2.6rem, 11vw, 8rem); min-height: 1.1em; }
 .type {
