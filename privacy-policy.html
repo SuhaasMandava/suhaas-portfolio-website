@@ -43,20 +43,21 @@
       <ul>
         <li>No accounts or logins.</li>
         <li>No forms or user-submitted content.</li>
-        <li>No cookies or tracking storage.</li>
-        <li>No personal data collection.</li>
-        <li>No analytics in use right now.</li>
+        <li>No cookies, including the analytics (it is cookieless).</li>
+        <li>No personal information is collected about you.</li>
+        <li>Privacy-friendly, aggregate-only analytics (Vercel) for traffic and performance.</li>
         <li>AI-generated media is disclosed separately, in its own section below.</li>
       </ul>
 
       <h2>The short version</h2>
       <p>
-        This site has no user accounts, no forms, no cookies, and collects no
-        personal information about you. There is nothing to opt out of because
-        nothing is being gathered.
+        This site has no user accounts, no forms, and no cookies. It uses
+        privacy-friendly analytics that collects only anonymized, aggregate data,
+        never personal information about you, so there is nothing tied to you as an
+        individual and nothing to opt out of.
       </p>
 
-      <h2>No data collection</h2>
+      <h2>What I don't collect</h2>
       <ul>
         <li>There are no sign-ups, logins, or user accounts.</li>
         <li>There are no forms. Nothing on this site asks you to type or submit information.</li>
@@ -88,30 +89,23 @@
         of any real person or device.
       </p>
 
-      <!-- ============================================================
-        ANALYTICS: NOT CURRENTLY ENABLED.
-        This section is intentionally commented out because the site does
-        not currently use any analytics. If/when you add a privacy-friendly
-        analytics tool (e.g. Vercel Analytics or Google Analytics), delete
-        these comment markers to publish the section, and update the CSP in
-        <head> plus _headers / vercel.json to allow the provider's domain.
-
       <h2>Analytics</h2>
       <p>
-        This site uses a privacy-friendly analytics tool to understand roughly how
-        many people visit and which pages are popular. It may collect anonymized,
-        aggregated usage data such as page views, browser type, device type, and
-        approximate (city- or country-level) location derived from your IP address.
-        This data is not used to identify you personally and is not sold.
+        This site uses Vercel Web Analytics and Vercel Speed Insights to understand
+        how many people visit, which pages are popular, and how well the site
+        performs. These tools are cookieless and collect only anonymized, aggregated
+        data, such as page views, referrers, browser and device type, approximate
+        (city or country level) location derived from your IP address, and
+        performance metrics like page load speed. This data is never used to identify
+        you personally, is not tied to a profile, is not used to track you across
+        other sites, and is not sold.
       </p>
-
-        END ANALYTICS SECTION
-      ============================================================ -->
 
       <h2>Changes to this policy</h2>
       <p>
-        If the way the site works ever changes (for example, if I add analytics or a
-        contact form), I'll update this page and change the "last updated" date above.
+        If the way the site works ever changes (for example, if I add a contact form
+        or new features), I'll update this page and change the "last updated" date
+        above.
       </p>
 
       <h2>Questions</h2>
@@ -129,5 +123,10 @@
       <a href="index.html" class="footer__top">↑ Home</a>
     </div>
   </footer>
+
+  <!-- Vercel Speed Insights (performance) + Web Analytics (traffic). Same-origin
+       and cookieless; these routes only exist on the Vercel deployment. -->
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
