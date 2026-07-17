@@ -28,8 +28,8 @@
   --grad-soft: linear-gradient(115deg, rgba(var(--accent-rgb), 0.16), rgba(var(--accent-2-rgb), 0.16));
 }
 
-/* ---- Dark theme (default) ---- */
-[data-theme="dark"] {
+/* ---- Theme: permanently dark (no light mode, no toggle) ---- */
+:root {
   --bg: #0a0c10;
   --bg-2: #0d1017;
   --card: #12151d;
@@ -48,29 +48,6 @@
   /* Hero video scrim: dark on the text side (left) + a bottom fade into the page. */
   --hero-scrim:
     linear-gradient(90deg, rgba(8, 10, 14, 0.92), rgba(8, 10, 14, 0.62) 52%, rgba(8, 10, 14, 0.38)),
-    linear-gradient(0deg, var(--bg) 2%, transparent 34%);
-}
-
-/* ---- Light theme ---- */
-[data-theme="light"] {
-  --bg: #f3f5f4;
-  --bg-2: #ffffff;
-  --card: #ffffff;
-  --card-2: #ffffff;
-  --surface: #ffffff;
-  --border: rgba(16, 24, 20, 0.12);
-  --border-strong: rgba(16, 24, 20, 0.26);
-  --text: #1b2620;
-  --text-dim: #5c6b63;
-  --heading: #0a140e;
-  --accent-ink: #04140b;
-  --deco: rgba(var(--accent-rgb), 0.16);
-  --shadow: 0 24px 60px -28px rgba(16, 40, 28, 0.28);
-  --glow: 0 18px 50px -16px rgba(var(--accent-rgb), 0.5);
-  --glow-2: 0 18px 50px -16px rgba(var(--accent-2-rgb), 0.45);
-  /* Light theme keeps dark text readable: lighten the video instead of darkening it. */
-  --hero-scrim:
-    linear-gradient(90deg, rgba(243, 245, 244, 0.93), rgba(243, 245, 244, 0.72) 52%, rgba(243, 245, 244, 0.5)),
     linear-gradient(0deg, var(--bg) 2%, transparent 34%);
 }
 
@@ -302,14 +279,6 @@ em { font-style: italic; color: var(--accent); font-weight: 500; }
 .nav__indicator.is-active { opacity: 1; }
 .nav__actions { display: flex; align-items: center; gap: 10px; }
 
-/* Theme toggle icon cross-fade */
-#themeToggle { position: relative; overflow: hidden; }
-#themeToggle svg { position: absolute; inset: 0; margin: auto; transition: opacity var(--transition), transform 0.45s var(--ease-spring); }
-[data-theme="dark"] .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
-[data-theme="dark"] .icon-sun  { opacity: 0; transform: rotate(-90deg) scale(0.4); }
-[data-theme="light"] .icon-sun  { opacity: 1; transform: rotate(0) scale(1); }
-[data-theme="light"] .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.4); }
-
 /* Burger */
 .nav__burger { display: none; flex-direction: column; gap: 4px; }
 .nav__burger span { display: block; width: 17px; height: 2px; background: currentColor; border-radius: 2px; transition: var(--transition); }
@@ -369,7 +338,16 @@ main { position: relative; z-index: 1; }
 }
 .hero__content { position: relative; z-index: 2; }
 .hero__kicker { font-family: var(--font-display); color: var(--accent); font-size: 1rem; margin-bottom: 16px; }
-.hero__title { font-size: clamp(2.6rem, 11vw, 8rem); min-height: 1.1em; }
+/* Headline must never wrap: the typing cycle stays on one line at every width.
+   Font-size scales with the viewport (clamp) so the longest phrase
+   ("Aspiring AI Engineer", ~11.5em wide in JetBrains Mono) fits inside the
+   container down to ~320px instead of wrapping. white-space: nowrap enforces
+   the single line and keeps the blinking caret inline right after the text. */
+.hero__title {
+  font-size: clamp(1.2rem, 6.2vw, 5.25rem);
+  min-height: 1.1em;
+  white-space: nowrap;
+}
 .type {
   background: var(--grad);
   -webkit-background-clip: text; background-clip: text;
@@ -685,11 +663,6 @@ main { position: relative; z-index: 1; }
 @keyframes revealIn { to { opacity: 1; translate: 0 0; scale: 1; } }
 @keyframes caretBlink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
 
-/* Whole-page colour cross-fade during a theme switch (JS toggles the class). */
-.theme-transition, .theme-transition * {
-  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease !important;
-}
-
 /* ============================================================
    Responsive
    ============================================================ */
@@ -744,5 +717,4 @@ main { position: relative; z-index: 1; }
   .reveal { opacity: 1 !important; translate: none !important; scale: none !important; transform: none !important; animation: none !important; }
   .type-caret { animation: none !important; opacity: 1; }
   .cursor-dot, .cursor-ring { display: none !important; }
-  .theme-transition, .theme-transition * { transition-duration: 0.001ms !important; }
 }

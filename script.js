@@ -487,26 +487,10 @@ function initScrollSpy() {
 }
 
 // ==================================================================
-//  Theme toggle, mobile nav, reveal, carousel, back-to-top
+//  Mobile nav, reveal, carousel, back-to-top
+//  (No theme logic: the site is permanently dark. There is no toggle,
+//   no prefers-color-scheme detection, and no stored preference.)
 // ==================================================================
-function initTheme() {
-  const root = document.documentElement;
-  const toggle = document.getElementById("themeToggle");
-  const stored = localStorage.getItem("theme");
-  const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-  root.setAttribute("data-theme", stored || (prefersLight ? "light" : "dark"));
-  if (!toggle) return;
-  let t;
-  toggle.addEventListener("click", () => {
-    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    root.classList.add("theme-transition");
-    root.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
-    clearTimeout(t);
-    t = setTimeout(() => root.classList.remove("theme-transition"), 450);
-  });
-}
-
 function initNav() {
   const burger = document.getElementById("navBurger");
   const links = document.getElementById("navLinks");
@@ -576,7 +560,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSkills();
   renderExperience();
 
-  initTheme();
   initNav();
   initReveal();
   initCarousel();
