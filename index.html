@@ -5,7 +5,7 @@
   <!-- Content Security Policy: only self-hosted scripts/styles + the Google Fonts we actually use.
        Note: frame-ancestors is intentionally omitted here because it is IGNORED in a <meta> CSP;
        anti-framing is enforced via HTTP headers instead (see _headers / vercel.json). -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Suhaas Mandava, high school student and software developer. Projects, skills, experience, and contact." />
@@ -51,6 +51,15 @@
   <main class="container" id="top">
     <!-- ===== Hero ===== -->
     <section class="hero">
+      <!-- Background video. Source is set by JS (deferred) so it never blocks
+           first paint; a CSS gradient shows until the first frame is ready and
+           for reduced-motion / no-JS visitors. -->
+      <div class="hero__media" aria-hidden="true">
+        <video class="hero__video" id="heroVideo" muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture>
+          <source data-src="assets/Laptop_opening_video.mp4" type="video/mp4" />
+        </video>
+        <div class="hero__scrim"></div>
+      </div>
       <canvas class="hero__grid" id="heroGrid" aria-hidden="true"></canvas>
       <div class="hero__glow" id="heroGlow" aria-hidden="true"></div>
       <div class="hero__content">
