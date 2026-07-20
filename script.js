@@ -20,11 +20,13 @@ const projects = [
 ];
 
 // ---- Skills ------------------------------------------------------
+// A focused, honest set. Edit to match what you'd actually be comfortable being
+// asked about, and add anything real that's missing.
 const skillGroups = [
-  { icon: "◆", title: "Languages", items: ["Python", "JavaScript", "TypeScript", "Java", "C++", "HTML", "CSS"] },
-  { icon: "▲", title: "Frontend",  items: ["React", "Next.js", "Tailwind CSS", "Vite"] },
-  { icon: "●", title: "Backend",   items: ["Node.js", "Express", "Flask", "REST APIs", "PostgreSQL", "SQLite"] },
-  { icon: "■", title: "Tools",     items: ["Git & GitHub", "VS Code", "Linux", "Docker", "Figma"] },
+  { icon: "◆", title: "Languages", items: ["Python", "JavaScript", "Java", "HTML", "CSS"] },
+  { icon: "▲", title: "Frontend",  items: ["React", "Tailwind CSS", "Responsive design"] },
+  { icon: "●", title: "Backend",   items: ["Node.js", "Express", "SQLite", "REST APIs"] },
+  { icon: "■", title: "Tools",     items: ["Git & GitHub", "VS Code", "Linux"] },
 ];
 
 // ---- Experience --------------------------------------------------
@@ -395,7 +397,7 @@ function initHeroVideo() {
   if (reduceMotion()) { loadVideo(); return; }
 
   // Otherwise defer the ~3MB fetch until the page has loaded and the main thread
-  // is idle, then play — so it never competes with first paint.
+  // is idle, then play, so it never competes with first paint.
   const start = () => {
     loadVideo();
     const p = video.play();
