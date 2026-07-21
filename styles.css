@@ -1,8 +1,8 @@
 /* ============================================================
    Suhaas Mandava, Portfolio
-   Bold dev-tool aesthetic, now with a real colour system:
-   electric green (#24E88A) + electric violet (#A06BFF) on near-black.
-   Display: JetBrains Mono · Body: Inter. Dark is the default.
+   Premium monochrome system: black, white, and brushed silver.
+   Metallic gradients + layered depth. No colour, dark only.
+   Display: JetBrains Mono · Body: Inter · Emphasis: Instrument Serif.
    ============================================================ */
 
 :root {
@@ -14,40 +14,46 @@
 
   --font-display: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', serif;
 
   --transition: 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);   /* overshoot-and-settle */
 
-  /* Brand accents (constant across themes) */
-  --accent: #24e88a;
-  --accent-rgb: 36, 232, 138;
-  --accent-2: #a06bff;
-  --accent-2-rgb: 160, 107, 255;
-  --grad: linear-gradient(115deg, var(--accent), var(--accent-2));
-  --grad-soft: linear-gradient(115deg, rgba(var(--accent-rgb), 0.16), rgba(var(--accent-2-rgb), 0.16));
+  /* Silver "accent" (monochrome). accent-rgb feeds all the rgba() tints. */
+  --accent: #eef0f2;
+  --accent-rgb: 238, 240, 242;
+  --accent-2: #a7a9b0;            /* dimmer silver for subtle two-tone gradients */
+  --accent-2-rgb: 167, 169, 176;
+  --accent-ink: #0a0a0b;          /* dark text that sits on silver fills */
+
+  /* Brushed-metal gradient: bright highlight, a hard reflection line, then
+     a dark trough. Used for metal buttons, bars, and clipped silver text. */
+  --grad: linear-gradient(180deg, #ffffff 0%, #d7d9de 44%, #a4a6ad 52%, #e6e8ec 100%);
+  --grad-soft: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(167, 169, 176, 0.06));
+  --metal-text: linear-gradient(180deg, #ffffff 0%, #e4e6ea 38%, #9a9ca3 60%, #f2f3f6 100%);
 }
 
 /* ---- Theme: permanently dark (no light mode, no toggle) ---- */
 :root {
-  --bg: #0a0c10;
-  --bg-2: #0d1017;
-  --card: #12151d;
-  --card-2: #171b25;
-  --surface: #12151d;
-  --border: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(255, 255, 255, 0.18);
-  --text: #e8ecf3;
-  --text-dim: #8b93a4;
+  --bg: #08080a;                  /* neutral near-black, no colour cast */
+  --bg-2: #0d0d10;
+  --card: #131316;
+  --card-2: #191a1e;
+  --surface: #131316;
+  --border: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --text: #e9eaee;
+  --text-dim: #90929a;            /* neutral grey */
   --heading: #ffffff;
-  --accent-ink: #04140b;     /* text on the green accent */
-  --deco: rgba(var(--accent-rgb), 0.10);
-  --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.85);
-  --glow: 0 18px 50px -14px rgba(var(--accent-rgb), 0.45);
-  --glow-2: 0 18px 50px -14px rgba(var(--accent-2-rgb), 0.45);
-  /* Hero video scrim: dark on the text side (left) + a bottom fade into the page. */
+  --deco: rgba(255, 255, 255, 0.08);
+  --shadow: 0 30px 70px -28px rgba(0, 0, 0, 0.92);
+  /* Depth "glow" is now a cool white ambient light + a deep contact shadow. */
+  --glow: 0 1px 0 rgba(255, 255, 255, 0.14) inset, 0 26px 60px -22px rgba(0, 0, 0, 0.9), 0 0 44px -8px rgba(255, 255, 255, 0.10);
+  --glow-2: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+  /* Hero video scrim: neutral dark on the text side + a bottom fade into the page. */
   --hero-scrim:
-    linear-gradient(90deg, rgba(8, 10, 14, 0.92), rgba(8, 10, 14, 0.62) 52%, rgba(8, 10, 14, 0.38)),
+    linear-gradient(90deg, rgba(6, 6, 7, 0.92), rgba(6, 6, 7, 0.62) 52%, rgba(6, 6, 7, 0.38)),
     linear-gradient(0deg, var(--bg) 2%, transparent 34%);
 }
 
@@ -77,9 +83,30 @@ body.has-cursor .feature { cursor: none; }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
-em { font-style: italic; color: var(--accent); font-weight: 500; }
+em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.08em;
+  color: #f5f6f8;
+  letter-spacing: 0.005em;
+}
 
-.container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 28px; }
+/* Ambient studio lighting: a soft overhead spotlight + a faint side fill,
+   fixed behind everything, for a premium lit-from-above look. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 45% at 50% -8%, rgba(255, 255, 255, 0.08), transparent 60%),
+    radial-gradient(45% 35% at 88% 12%, rgba(255, 255, 255, 0.045), transparent 60%),
+    radial-gradient(55% 45% at 8% 92%, rgba(255, 255, 255, 0.03), transparent 60%);
+}
+
+.container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
 
 /* ============================================================
    Custom cursor (dot + ring)
@@ -191,7 +218,12 @@ em { font-style: italic; color: var(--accent); font-weight: 500; }
   color: var(--accent-ink);
   font-weight: 700;
   font-size: 1rem;
-  transition: transform var(--transition), box-shadow var(--transition);
+  /* Brushed-metal button: bright top bevel, dark bottom edge, soft drop. */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.35),
+    0 10px 24px -8px rgba(0, 0, 0, 0.7);
+  transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
 }
 .cta__arrow {
   display: inline-grid; place-items: center;
@@ -201,7 +233,13 @@ em { font-style: italic; color: var(--accent); font-weight: 500; }
   color: var(--accent);
   transition: transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
 }
-.cta:hover .cta__pill { box-shadow: var(--glow); }
+.cta:hover .cta__pill {
+  filter: brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.35),
+    0 16px 34px -10px rgba(0, 0, 0, 0.78);
+}
 .cta:hover .cta__arrow { transform: translateX(4px); background: var(--grad); color: var(--accent-ink); border-color: transparent; }
 .cta:active .cta__pill { transform: scale(0.98); }
 .cta--center { justify-content: center; }
@@ -293,6 +331,14 @@ main { position: relative; z-index: 1; }
    background video every reflow (the "pulsing zoom"); a fixed min-height fixes it. */
 .hero {
   position: relative;
+  /* Full-bleed: the hero background spans the whole viewport width even though
+     it lives inside the centered max-width container. The content is
+     re-centered via .hero__content below. */
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   min-height: min(88vh, 880px);
   display: flex;
   flex-direction: column;
@@ -327,8 +373,8 @@ main { position: relative; z-index: 1; }
   position: absolute;
   width: 480px; height: 480px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--accent-rgb), 0.18), rgba(var(--accent-2-rgb), 0.10) 40%, transparent 70%);
-  filter: blur(30px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05) 42%, transparent 70%);
+  filter: blur(34px);
   z-index: 1;
   pointer-events: none;
   transform: translate3d(-50%, -50%, 0);
@@ -336,7 +382,14 @@ main { position: relative; z-index: 1; }
   opacity: 0.9;
   will-change: transform;
 }
-.hero__content { position: relative; z-index: 2; }
+.hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 28px;   /* matches .container so content aligns with the rest of the page */
+}
 .hero__kicker { font-family: var(--font-display); color: var(--accent); font-size: 1rem; margin-bottom: 16px; }
 /* Headline must never wrap: the typing cycle stays on one line at every width.
    Font-size scales with the viewport (clamp) so the longest phrase
@@ -349,7 +402,7 @@ main { position: relative; z-index: 1; }
   white-space: nowrap;
 }
 .type {
-  background: var(--grad);
+  background: var(--metal-text);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
 }
@@ -395,7 +448,7 @@ main { position: relative; z-index: 1; }
   position: relative;
   font-family: var(--font-display); font-weight: 800;
   font-size: clamp(2rem, 5vw, 3rem);
-  background: var(--grad);
+  background: var(--metal-text);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
   line-height: 1;
@@ -441,14 +494,19 @@ main { position: relative; z-index: 1; }
   will-change: transform;
 }
 .feature:hover { border-color: rgba(var(--accent-rgb), 0.55); box-shadow: var(--glow); }
+/* Dark brushed-metal panels with a soft light streak (no colour). */
 .feature__media {
   background:
-    radial-gradient(120% 120% at 20% 10%, rgba(255,255,255,0.28), transparent 55%),
-    linear-gradient(135deg, var(--accent), #35c8ff 45%, var(--accent-2));
+    radial-gradient(120% 120% at 22% 8%, rgba(255, 255, 255, 0.5), transparent 42%),
+    linear-gradient(150deg, #3a3b40 0%, #17171a 46%, #2c2d32 74%, #101012 100%);
   position: relative;
 }
-.feature--b .feature__media { background: linear-gradient(135deg, var(--accent-2), #ff6ec7 55%, var(--accent)); }
-.feature--muted .feature__media { background: linear-gradient(135deg, #1b2030, #2a3145); }
+.feature--b .feature__media {
+  background:
+    radial-gradient(130% 120% at 78% 12%, rgba(255, 255, 255, 0.42), transparent 46%),
+    linear-gradient(150deg, #45464c 0%, #161618 52%, #34353b 100%);
+}
+.feature--muted .feature__media { background: linear-gradient(150deg, #1a1a1d, #0e0e10 60%, #232327); }
 .feature__body {
   background: var(--card);
   color: var(--text);
@@ -511,7 +569,7 @@ main { position: relative; z-index: 1; }
 .photo-frame:hover { box-shadow: var(--glow); border-color: var(--accent); }
 .photo-frame span {
   font-family: var(--font-display); font-weight: 800; font-size: 3.4rem;
-  background: var(--grad);
+  background: var(--metal-text);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
   letter-spacing: 0.05em;

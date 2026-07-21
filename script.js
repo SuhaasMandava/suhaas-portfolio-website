@@ -319,7 +319,7 @@ function initHeroBackground() {
   const ctx = canvas.getContext("2d");
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   const GAP = 42, R = 1.3, INFL = 110;
-  const accent = [36, 232, 138], violet = [160, 107, 255];
+  const accent = [150, 152, 158], violet = [244, 245, 248]; // silver base, white near-cursor
   let w = 0, h = 0, dots = [], mx = -9999, my = -9999, drawPending = false;
 
   const draw = () => {
