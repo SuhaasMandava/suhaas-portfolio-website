@@ -507,8 +507,10 @@ main { position: relative; z-index: 1; }
     linear-gradient(150deg, #45464c 0%, #161618 52%, #34353b 100%);
 }
 .feature--muted .feature__media { background: linear-gradient(150deg, #1a1a1d, #0e0e10 60%, #232327); }
-/* Image thumbnail: fills the media panel exactly like the gradient, cropped to cover. */
-.feature__media-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* Image thumbnail: the <img> IS the media grid cell, so it stretches to the
+   card height and crops to fill (no letterboxing), same footprint as the
+   gradient placeholder. */
+.feature__media--img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .feature__body {
   background: var(--card);
   color: var(--text);

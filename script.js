@@ -16,6 +16,7 @@ const projects = [
     tags: ["HTML", "CSS", "JavaScript"],
     repo: `https://github.com/${GITHUB_USER}/suhaas-portfolio-website`,
     demo: "",
+    image: "assets/portfolio_website_card_image.png",
   },
   {
     title: "F1 Strategy Dashboard",
@@ -35,7 +36,8 @@ const skillGroups = [
   { icon: "◆", title: "Languages", items: ["Python", "JavaScript", "Java", "HTML", "CSS"] },
   { icon: "▲", title: "Frontend",  items: ["React", "Tailwind CSS", "Responsive design"] },
   { icon: "●", title: "Backend",   items: ["Node.js", "Express", "SQLite", "REST APIs"] },
-  { icon: "■", title: "Tools",     items: ["Git & GitHub", "VS Code", "Linux"] },
+  { icon: "■", title: "Tools",     items: ["Git & GitHub", "VS Code", "Claude Code", "Linux"] },
+  { icon: "⬢", title: "Deployment", items: ["Vercel", "Streamlit"] },
   { icon: "◈", title: "Smart Home", items: ["Home Assistant", "YAML automations", "Integrations"] },
 ];
 
@@ -82,7 +84,7 @@ function renderProjects() {
     // Image thumbnail when provided, else the gradient placeholder. The image
     // fills the same media area (object-fit: cover) and is clipped by the card.
     const media = p.image
-      ? `<div class="feature__media"><img class="feature__media-img" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)} preview" loading="lazy" /></div>`
+      ? `<img class="feature__media feature__media--img" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)} preview" loading="lazy" />`
       : `<div class="feature__media"></div>`;
     const liveBtn =
       p.demo && p.demo !== "#"
