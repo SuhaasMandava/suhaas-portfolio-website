@@ -17,6 +17,15 @@ const projects = [
     repo: `https://github.com/${GITHUB_USER}/suhaas-portfolio-website`,
     demo: "",
   },
+  {
+    title: "F1 Strategy Dashboard",
+    description:
+      "An interactive dashboard for exploring F1 race strategy: lap times, tire stints, pit stop durations, and undercut/overcut analysis, built on real session data via the FastF1 library.",
+    tags: ["Python", "Streamlit", "Plotly"],
+    repo: `https://github.com/${GITHUB_USER}/f1-strategy-dashboard`,
+    demo: "https://f1-strategy-suhaas.streamlit.app",
+    image: "assets/tire_gantt_chart.png",
+  },
 ];
 
 // ---- Skills ------------------------------------------------------
@@ -70,20 +79,25 @@ function renderProjects() {
   const cards = projects.map((p, i) => {
     const variant = variants[i % variants.length];
     const tags = p.tags.map((t) => `<span>${escapeHtml(t)}</span>`).join("");
-    const demoBtn =
+    // Image thumbnail when provided, else the gradient placeholder. The image
+    // fills the same media area (object-fit: cover) and is clipped by the card.
+    const media = p.image
+      ? `<div class="feature__media"><img class="feature__media-img" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)} preview" loading="lazy" /></div>`
+      : `<div class="feature__media"></div>`;
+    const liveBtn =
       p.demo && p.demo !== "#"
-        ? `<a class="feature__btn feature__btn--ghost" href="${escapeHtml(p.demo)}" target="_blank" rel="noopener noreferrer">Live ${iconArrow}</a>`
+        ? `<a class="feature__btn" href="${escapeHtml(p.demo)}" target="_blank" rel="noopener noreferrer">Live ${iconArrow}</a>`
         : "";
     return `
       <article class="feature reveal ${variant}" data-tilt>
-        <div class="feature__media"></div>
+        ${media}
         <div class="feature__body">
           <h3 class="feature__title">${escapeHtml(p.title)}</h3>
           <p class="feature__desc">${escapeHtml(p.description)}</p>
           <div class="feature__tags">${tags}</div>
           <div class="feature__links">
+            ${liveBtn}
             <a class="feature__btn" href="${escapeHtml(p.repo)}" target="_blank" rel="noopener noreferrer">${iconGithub} Code</a>
-            ${demoBtn}
           </div>
         </div>
       </article>`;
