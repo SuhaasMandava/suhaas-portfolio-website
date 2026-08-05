@@ -481,7 +481,7 @@ main { position: relative; z-index: 1; }
 
 .feature {
   scroll-snap-align: start;
-  flex: 0 0 clamp(280px, 80%, 560px);
+  flex: 0 0 100%;   /* one card per view; arrows / snap move between them */
   display: grid;
   grid-template-columns: 40% 1fr;
   min-height: 260px;
