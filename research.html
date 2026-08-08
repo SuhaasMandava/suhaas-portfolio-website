@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Research by Suhaas Mandava: notes, analysis, and data-driven projects." />
+  <title>Research | Suhaas Mandava Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="research.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080809'/><text x='50' y='50' font-family='monospace' font-size='48' font-weight='800' fill='%23e8e8ec' text-anchor='middle' dominant-baseline='central'>SM</text></svg>" />
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__brand" data-magnetic>Suhaas<br />Mandava<span class="nav__dot">_</span></a>
+      <nav class="nav__links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="research.html" class="active">Research</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="icon-btn nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ===== Ticker tape (decorative) ===== -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__row">
+        <span class="ticker__item"><span class="ticker__sym">SIGNAL</span> <span class="up">&#9650; 4.2%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">DATA</span> <span class="up">&#9650; 1.8%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">MODEL</span> <span class="down">&#9660; 0.6%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">ALPHA</span> <span class="up">&#9650; 7.5%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">RISK</span> <span class="flat">&#9644; 0.0%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">EDGE</span> <span class="up">&#9650; 2.9%</span></span>
+        <!-- duplicate for a seamless loop -->
+        <span class="ticker__item"><span class="ticker__sym">SIGNAL</span> <span class="up">&#9650; 4.2%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">DATA</span> <span class="up">&#9650; 1.8%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">MODEL</span> <span class="down">&#9660; 0.6%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">ALPHA</span> <span class="up">&#9650; 7.5%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">RISK</span> <span class="flat">&#9644; 0.0%</span></span>
+        <span class="ticker__item"><span class="ticker__sym">EDGE</span> <span class="up">&#9650; 2.9%</span></span>
+      </div>
+    </div>
+
+    <!-- ===== Hero / index board ===== -->
+    <section class="rsrch-hero">
+      <p class="eyebrow reveal">&hellip; /Research desk &hellip;</p>
+      <h1 class="rsrch-title reveal">Research</h1>
+      <p class="rsrch-lead reveal">
+        A running log of what I've been digging into: questions I chased,
+        experiments I ran, and what the data actually said. Treated like a
+        portfolio of positions, each with its own thesis.
+      </p>
+
+      <div class="mkt-stats">
+        <div class="mkt-tile reveal">
+          <div class="mkt-tile__label">Research notes</div>
+          <div class="mkt-tile__val">3</div>
+          <div class="mkt-tile__chg up">&#9650; open positions</div>
+        </div>
+        <div class="mkt-tile reveal">
+          <div class="mkt-tile__label">Topics</div>
+          <div class="mkt-tile__val">4</div>
+          <div class="mkt-tile__chg up">&#9650; and growing</div>
+        </div>
+        <div class="mkt-tile reveal">
+          <div class="mkt-tile__label">Datasets</div>
+          <div class="mkt-tile__val">5</div>
+          <div class="mkt-tile__chg flat">&#9644; explored</div>
+        </div>
+        <div class="mkt-tile reveal">
+          <div class="mkt-tile__label">Since</div>
+          <div class="mkt-tile__val">2025</div>
+          <div class="mkt-tile__chg up">&#9650; day one</div>
+        </div>
+      </div>
+
+      <!-- Remove this note once real research is in. -->
+      <p class="tmpl-note">
+        Template: the entries below are placeholders. Swap in your real research
+        titles, fields, dates, and links.
+      </p>
+    </section>
+
+    <!-- ===== Watchlist table ===== -->
+    <section>
+      <div class="panel reveal">
+        <div class="panel__head">
+          <span>Research Watchlist</span>
+          <span class="panel__live"><span class="panel__dot"></span> Live</span>
+        </div>
+        <table class="watchlist">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Title / Field</th>
+              <th class="wl-hide">Tags</th>
+              <th class="num">Signal</th>
+              <th class="num wl-hide">Date</th>
+              <th class="num"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="wl-sym">RES-01</span></td>
+              <td><div class="wl-title">Your first research title</div><div class="wl-field">Field or question studied</div></td>
+              <td class="wl-hide"><span class="wl-field">tag, tag</span></td>
+              <td class="num"><span class="chg-chip up">&#9650; strong</span></td>
+              <td class="num wl-hide"><span class="mono wl-field">2025</span></td>
+              <td class="num"><a class="wl-open" href="#" target="_blank" rel="noopener noreferrer">Open</a></td>
+            </tr>
+            <tr>
+              <td><span class="wl-sym">RES-02</span></td>
+              <td><div class="wl-title">Your second research title</div><div class="wl-field">Field or question studied</div></td>
+              <td class="wl-hide"><span class="wl-field">tag, tag</span></td>
+              <td class="num"><span class="chg-chip up">&#9650; promising</span></td>
+              <td class="num wl-hide"><span class="mono wl-field">2025</span></td>
+              <td class="num"><a class="wl-open" href="#" target="_blank" rel="noopener noreferrer">Open</a></td>
+            </tr>
+            <tr>
+              <td><span class="wl-sym">RES-03</span></td>
+              <td><div class="wl-title">Your third research title</div><div class="wl-field">Field or question studied</div></td>
+              <td class="wl-hide"><span class="wl-field">tag, tag</span></td>
+              <td class="num"><span class="chg-chip down">&#9660; in progress</span></td>
+              <td class="num wl-hide"><span class="mono wl-field">2025</span></td>
+              <td class="num"><a class="wl-open" href="#" target="_blank" rel="noopener noreferrer">Open</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Position cards (featured research) ===== -->
+    <section>
+      <p class="section-label">Featured Positions</p>
+      <div class="positions">
+        <article class="pos-card reveal">
+          <div class="pos-card__top">
+            <span class="pos-card__sym">RES-01</span>
+            <span class="chg-chip up">&#9650; strong</span>
+          </div>
+          <svg class="pos-card__spark" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="0,32 14,28 28,30 42,20 56,22 70,12 84,14 100,5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3 class="pos-card__title">Your first research title</h3>
+          <p class="pos-card__abs">A short abstract goes here: the question you asked, how you approached it, and the headline finding. One or two sentences is plenty.</p>
+          <div class="pos-card__tags"><span>Method</span><span>Dataset</span><span>Tool</span></div>
+        </article>
+
+        <article class="pos-card pos-card--down reveal">
+          <div class="pos-card__top">
+            <span class="pos-card__sym">RES-03</span>
+            <span class="chg-chip down">&#9660; in progress</span>
+          </div>
+          <svg class="pos-card__spark" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="0,10 14,14 28,12 42,20 56,18 70,26 84,24 100,30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3 class="pos-card__title">Your third research title</h3>
+          <p class="pos-card__abs">A short abstract goes here. Use this card for work that's still open, with a note on what you're testing next.</p>
+          <div class="pos-card__tags"><span>Method</span><span>Dataset</span><span>Tool</span></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>Designed &amp; built by Suhaas Mandava · <a href="privacy-policy.html">Privacy Policy</a> · <a href="terms-of-use.html">Terms of Use</a></p>
+      <a href="index.html" class="footer__top">↑ Home</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

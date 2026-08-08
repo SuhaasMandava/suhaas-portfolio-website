@@ -12,7 +12,7 @@ const projects = [
   {
     title: "This Portfolio Site",
     description:
-      "The site you're on, designed and built from scratch with plain HTML, CSS, and vanilla JS. No frameworks, fully responsive, dark-mode-first, and open source.",
+      "The site you're looking at, hand-coded from scratch in plain HTML, CSS, and vanilla JavaScript, with no frameworks and no build step. It has a custom cursor, scroll-reveal animations, a full-bleed video hero, and a metallic monochrome design system. Fully responsive and open source.",
     tags: ["HTML", "CSS", "JavaScript"],
     repo: `https://github.com/${GITHUB_USER}/suhaas-portfolio-website`,
     demo: "",
@@ -21,7 +21,7 @@ const projects = [
   {
     title: "F1 Strategy Dashboard",
     description:
-      "An interactive dashboard for exploring F1 race strategy: lap times, tire stints, pit stop durations, and undercut/overcut analysis, built on real session data via the FastF1 library.",
+      "An interactive dashboard that breaks down Formula 1 race strategy from real session data. It visualizes tire stints, lap-time pace, pit windows, and undercut/overcut swings to show how races are won and lost on strategy alone. Built in Python with FastF1, Streamlit, and Plotly.",
     tags: ["Python", "Streamlit", "Plotly"],
     repo: `https://github.com/${GITHUB_USER}/f1-strategy-dashboard`,
     demo: "https://f1-strategy-suhaas.streamlit.app",
