@@ -13,7 +13,10 @@
 // ============================================================
 
 // Edit this watchlist to whatever you want the ticker to track.
-const SYMBOLS = ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN", "TSLA", "SPY"];
+const SYMBOLS = [
+  "AAPL", "MSFT", "NVDA", "AMD", "GOOGL", "AMZN", "META",
+  "TSLA", "PLTR", "AVGO", "NFLX", "SPY", "VOO", "QQQ",
+];
 
 export default async function handler(req, res) {
   const token = process.env.FINNHUB_API_KEY;
