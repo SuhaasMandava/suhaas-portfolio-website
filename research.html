@@ -36,22 +36,19 @@
   </header>
 
   <main class="container">
-    <!-- ===== Ticker tape (decorative) ===== -->
+    <!-- ===== Ticker tape (live quotes via /api/quotes) ===== -->
+    <!-- Static fallback below shows real symbols; script.js swaps in live
+         prices + % change on load and refreshes every 60s. If the API is
+         unreachable (e.g. opened as a local file), this fallback stays. -->
     <div class="ticker" aria-hidden="true">
-      <div class="ticker__row">
-        <span class="ticker__item"><span class="ticker__sym">SIGNAL</span> <span class="up">&#9650; 4.2%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">DATA</span> <span class="up">&#9650; 1.8%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">MODEL</span> <span class="down">&#9660; 0.6%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">ALPHA</span> <span class="up">&#9650; 7.5%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">RISK</span> <span class="flat">&#9644; 0.0%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">EDGE</span> <span class="up">&#9650; 2.9%</span></span>
-        <!-- duplicate for a seamless loop -->
-        <span class="ticker__item"><span class="ticker__sym">SIGNAL</span> <span class="up">&#9650; 4.2%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">DATA</span> <span class="up">&#9650; 1.8%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">MODEL</span> <span class="down">&#9660; 0.6%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">ALPHA</span> <span class="up">&#9650; 7.5%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">RISK</span> <span class="flat">&#9644; 0.0%</span></span>
-        <span class="ticker__item"><span class="ticker__sym">EDGE</span> <span class="up">&#9650; 2.9%</span></span>
+      <div class="ticker__row" id="tickerRow">
+        <span class="ticker__item"><span class="ticker__sym">AAPL</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">MSFT</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">NVDA</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">GOOGL</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">AMZN</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">TSLA</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">SPY</span> <span class="flat">&#9644;</span></span>
       </div>
     </div>
 

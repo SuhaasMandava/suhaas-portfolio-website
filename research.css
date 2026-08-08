@@ -43,6 +43,7 @@
 .ticker:hover .ticker__row { animation-play-state: paused; }
 .ticker__item { display: inline-flex; align-items: center; gap: 8px; color: var(--text-dim); }
 .ticker__sym { color: var(--heading); font-weight: 700; letter-spacing: 0.02em; }
+.ticker__px { color: var(--text-dim); }
 @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ---- Hero / index board ---- */

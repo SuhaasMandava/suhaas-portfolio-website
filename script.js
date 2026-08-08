@@ -570,6 +570,50 @@ function initBackToTop() {
   btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion() ? "auto" : "smooth" }));
 }
 
+// ---- Live market ticker (Research page) --------------------------
+// Pulls real quotes from the same-origin /api/quotes serverless function
+// (which holds the API key server-side). Falls back to the static markup if
+// the endpoint is unreachable, so the page never breaks offline or locally.
+function initTicker() {
+  const row = document.getElementById("tickerRow");
+  if (!row) return;
+
+  const glyph = (pct) => (pct > 0 ? "▲" : pct < 0 ? "▼" : "▬");
+  const cls = (pct) => (pct > 0 ? "up" : pct < 0 ? "down" : "flat");
+
+  const render = (quotes) => {
+    // Duplicate the set once so the CSS scroll loop stays seamless.
+    row.innerHTML = quotes
+      .concat(quotes)
+      .map((q) => {
+        const px = q.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        const pct = (q.pct >= 0 ? "+" : "") + q.pct.toFixed(2) + "%";
+        return (
+          `<span class="ticker__item">` +
+          `<span class="ticker__sym">${q.sym}</span> ` +
+          `<span class="ticker__px">${px}</span> ` +
+          `<span class="${cls(q.pct)}">${glyph(q.pct)} ${pct}</span>` +
+          `</span>`
+        );
+      })
+      .join("");
+  };
+
+  const load = async () => {
+    try {
+      const r = await fetch("/api/quotes", { cache: "no-store" });
+      if (!r.ok) return;
+      const data = await r.json();
+      if (data && Array.isArray(data.quotes) && data.quotes.length) render(data.quotes);
+    } catch (_) {
+      /* keep the static fallback */
+    }
+  };
+
+  load();
+  setInterval(load, 60000);
+}
+
 // ==================================================================
 //  Boot
 // ==================================================================
@@ -583,6 +627,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initReveal();
   initCarousel();
   initBackToTop();
+  initTicker();          // live market ticker (Research page only)
 
   initTyping();          // 3
   initScrollProgress();  // 4
