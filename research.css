@@ -216,16 +216,20 @@
 .kp-card__title { font-family: var(--font-display); font-weight: 700; color: var(--heading); font-size: 1.02rem; margin: 12px 0 10px; }
 .kp-card__body { color: var(--text-dim); font-size: 0.9rem; }
 
-/* ---- Embedded paper ---- */
-.paper-frame {
+/* ---- Full paper call to action ---- */
+.paper-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 22px;
   border: 1px solid var(--border);
+  border-left: 3px solid var(--up);
   border-radius: var(--radius-lg);
-  background: var(--panel);
-  overflow: hidden;
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  padding: 28px 32px;
 }
-.paper-embed { display: block; width: 100%; height: 82vh; min-height: 520px; border: 0; }
-.paper-fallback { margin-top: 14px; font-size: 0.83rem; color: var(--text-dim); }
-.paper-fallback a { color: var(--up); }
+.paper-cta__meta { flex: 1 1 260px; min-width: 0; }
+.paper-cta__title { font-family: var(--font-display); font-weight: 700; color: var(--heading); font-size: 1.08rem; }
+.paper-cta__sub { margin-top: 8px; font-size: 0.78rem; color: var(--text-dim); letter-spacing: 0.02em; }
+.paper-cta__actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ---- Disclaimer ---- */
 .disclaimer {
@@ -249,6 +253,7 @@
 @media (max-width: 680px) {
   .watchlist .wl-hide { display: none; }
   .watchlist th, .watchlist td { padding: 14px 16px; }
-  .overview, .kp-card, .feat-card { padding: 22px 20px; }
-  .paper-embed { height: 68vh; }
+  .overview, .kp-card, .feat-card, .paper-cta { padding: 22px 20px; }
+  .paper-cta__actions { width: 100%; }
+  .paper-cta__actions .rsrch-btn { flex: 1 1 auto; justify-content: center; }
 }
