@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Anthropic: Pricing the Pre-IPO AI Leader. A valuation study by Suhaas Mandava, July 2026." />
+  <title>Anthropic: Pricing the Pre-IPO AI Leader | Suhaas Mandava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="research.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080809'/><text x='50' y='50' font-family='monospace' font-size='48' font-weight='800' fill='%23e8e8ec' text-anchor='middle' dominant-baseline='central'>SM</text></svg>" />
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__brand" data-magnetic>Suhaas<br />Mandava<span class="nav__dot">_</span></a>
+      <nav class="nav__links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="research.html" class="active">Research</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="icon-btn nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ===== Ticker tape (live quotes via /api/quotes) ===== -->
+    <!-- Static fallback below shows real symbols; script.js swaps in live
+         prices + % change on load and refreshes every 60s. If the API is
+         unreachable (e.g. opened as a local file), this fallback stays. -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__row" id="tickerRow">
+        <span class="ticker__item"><span class="ticker__sym">AAPL</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">MSFT</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">NVDA</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">AMD</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">GOOGL</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">AMZN</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">META</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">TSLA</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">PLTR</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">AVGO</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">NFLX</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">SPY</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">VOO</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">QQQ</span> <span class="flat">&#9644;</span></span>
+      </div>
+    </div>
+
+    <!-- ===== Hero ===== -->
+    <section class="rsrch-hero">
+      <a href="research.html" class="rsrch-back">&larr; All research</a>
+      <p class="eyebrow reveal">&hellip; /Valuation study &hellip;</p>
+      <h1 class="rsrch-title rsrch-title--paper reveal">Anthropic: Pricing the<br />Pre-IPO AI Leader</h1>
+      <p class="rsrch-lead reveal">
+        How do you price a company that has no stock ticker? A valuation study of
+        Anthropic written after it filed confidentially for an IPO.
+      </p>
+      <p class="rsrch-byline mono reveal">
+        Suhaas Mandava &middot; 07/25/2026 &middot; 10 pages &middot; 9 sources
+      </p>
+      <div class="rsrch-actions reveal">
+        <a class="rsrch-btn" href="papers/anthropic-pre-ipo-valuation.pdf" target="_blank" rel="noopener noreferrer">Open the PDF</a>
+        <a class="rsrch-btn rsrch-btn--ghost" href="papers/anthropic-pre-ipo-valuation.pdf" download>Download</a>
+      </div>
+    </section>
+
+    <!-- ===== Overview ===== -->
+    <section>
+      <p class="section-label">Overview</p>
+      <div class="overview reveal">
+        <p>
+          Anthropic is a strange company to research, because you cannot buy stock
+          in it. It is still private. In June 2026 it filed confidential paperwork
+          with the SEC for an IPO, which got me curious about how a company gets
+          priced before it has a ticker, and whether the number attached to it right
+          now actually makes sense.
+        </p>
+        <p class="overview__thesis">
+          <strong>My argument:</strong> Anthropic's revenue growth and cost
+          efficiency are real and well supported, but its valuation has grown faster
+          than either one. The price investors are paying is currently ahead of what
+          the business has actually proven.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Key points ===== -->
+    <section>
+      <p class="section-label">Key points</p>
+      <div class="kp-grid">
+        <article class="kp-card reveal">
+          <div class="kp-card__stat up">$61.5B &rarr; $965B</div>
+          <h3 class="kp-card__title">The valuation ran 15.7x in 14 months</h3>
+          <p class="kp-card__body">
+            Across four rounds from March 2025 to May 2026, selling the same core
+            product into the same market. What changed was not the business, it was
+            what investors were willing to pay for it.
+          </p>
+        </article>
+
+        <article class="kp-card reveal">
+          <div class="kp-card__stat up">1,000+</div>
+          <h3 class="kp-card__title">Enterprise demand looks real</h3>
+          <p class="kp-card__body">
+            Customers spending over $1M a year roughly doubled from about 500 in two
+            months, and eight of the ten largest companies by revenue run significant
+            workloads on Claude. That is deep integration, not a trial.
+          </p>
+        </article>
+
+        <article class="kp-card reveal">
+          <div class="kp-card__stat up">~60%</div>
+          <h3 class="kp-card__title">Costs are better than expected</h3>
+          <p class="kp-card__body">
+            Compute runs near 60 percent of revenue against an estimated 75 percent
+            plus at OpenAI, cash burn is guided down from $5.6B to about $3B, and the
+            company projected an unusually early profitable quarter.
+          </p>
+        </article>
+
+        <article class="kp-card reveal">
+          <div class="kp-card__stat down">Ahead of proof</div>
+          <h3 class="kp-card__title">But the multiple outran the fundamentals</h3>
+          <p class="kp-card__body">
+            A 15.7x jump is larger than revenue growth alone justifies, so part of
+            that number is a future that has not happened yet. The IPO filing is the
+            real test, when public markets can check these figures against full
+            disclosures instead of investor projections.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== The paper ===== -->
+    <section>
+      <p class="section-label">The paper</p>
+      <div class="paper-frame reveal">
+        <iframe class="paper-embed" src="papers/anthropic-pre-ipo-valuation.pdf#view=FitH" title="Anthropic: Pricing the Pre-IPO AI Leader, full paper"></iframe>
+      </div>
+      <p class="paper-fallback">
+        Not loading? <a href="papers/anthropic-pre-ipo-valuation.pdf" target="_blank" rel="noopener noreferrer">Open the PDF in a new tab</a>.
+      </p>
+
+      <p class="disclaimer">
+        <strong>Disclaimer:</strong> This is a student research paper, not
+        professional financial analysis or investment advice. Anthropic is a
+        private company and does not publish audited financial statements, so
+        every figure here comes from company announcements, media reporting, and
+        third-party financial sites rather than official filings. These numbers
+        are largely self-reported projections and estimates, so they may be
+        incomplete, revised, or inaccurate, and all amounts should be read as
+        approximate and illustrative.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>Designed &amp; built by Suhaas Mandava · <a href="privacy-policy.html">Privacy Policy</a> · <a href="terms-of-use.html">Terms of Use</a></p>
+      <a href="index.html" class="footer__top">↑ Home</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
