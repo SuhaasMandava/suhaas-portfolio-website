@@ -253,7 +253,35 @@
 @media (max-width: 680px) {
   .watchlist .wl-hide { display: none; }
   .watchlist th, .watchlist td { padding: 14px 16px; }
+
+  /* The row is wider than a phone once the thesis chip and button are in it,
+     and body has overflow-x hidden, so it would be clipped rather than
+     scrollable. Stack each row into a card instead. */
+  .watchlist thead { display: none; }
+  .watchlist, .watchlist tbody, .watchlist tr, .watchlist td { display: block; width: 100%; }
+  .watchlist tr { padding: 18px 18px 20px; border-bottom: 1px solid var(--grid-line); }
+  .watchlist tbody tr:last-child { border-bottom: none; }
+  .watchlist td { padding: 0; border: none; }
+  .watchlist td.num { text-align: left; }
+  .watchlist td + td { margin-top: 12px; }
+  .chg-chip { display: inline-block; white-space: normal; }
+  .wl-open { display: block; text-align: center; padding: 12px 16px; }
   .overview, .kp-card, .feat-card, .paper-cta { padding: 22px 20px; }
   .paper-cta__actions { width: 100%; }
   .paper-cta__actions .rsrch-btn { flex: 1 1 auto; justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  /* Long values such as "Valuation" overflow a half-width tile at 2.1rem,
+     and the tile clips its overflow, so scale the type down here. */
+  .mkt-stats { gap: 12px; }
+  .mkt-tile { padding: 16px 16px; }
+  .mkt-tile__val { font-size: 1.35rem; overflow-wrap: anywhere; }
+  .mkt-tile__chg, .mkt-tile__label { font-size: 0.68rem; }
+  .rsrch-actions .rsrch-btn { flex: 1 1 auto; justify-content: center; }
+}
+
+@media (max-width: 380px) {
+  /* "Valuation" is the longest tile value and still breaks mid-word above. */
+  .mkt-tile__val { font-size: 1.15rem; }
 }

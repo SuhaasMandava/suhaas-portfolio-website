@@ -15,16 +15,21 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080809'/><text x='50' y='50' font-family='monospace' font-size='48' font-weight='800' fill='%23e8e8ec' text-anchor='middle' dominant-baseline='central'>SM</text></svg>" />
 </head>
 <body>
-  <header class="nav">
+  <header class="nav" id="nav">
     <div class="nav__inner container">
       <a href="index.html" class="nav__brand">Suhaas<br />Mandava<span class="nav__dot">_</span></a>
-      <nav class="nav__links">
+      <nav class="nav__links" id="navLinks">
         <a href="index.html#about">About</a>
         <a href="index.html#projects">Projects</a>
         <a href="research.html">Research</a>
         <a href="index.html#skills">Skills</a>
         <a href="index.html#contact">Contact</a>
       </nav>
+      <div class="nav__actions">
+        <button class="icon-btn nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -105,6 +110,7 @@
     </div>
   </footer>
 
+  <script src="script.js"></script>
   <!-- Vercel Speed Insights (performance) + Web Analytics (traffic). Same-origin
        and cookieless; these routes only exist on the Vercel deployment. -->
   <script defer src="/_vercel/speed-insights/script.js"></script>

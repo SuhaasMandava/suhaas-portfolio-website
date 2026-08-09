@@ -688,7 +688,10 @@ main { position: relative; z-index: 1; }
 /* ============================================================
    Legal / prose pages (privacy policy)
    ============================================================ */
-.legal { max-width: 760px; padding: 60px 0 90px; position: relative; z-index: 1; }
+/* Horizontal padding is repeated here on purpose: this element also carries
+   .container, and the shorthand below would otherwise reset its 0 28px and
+   let the text run into the screen edges on phones. */
+.legal { max-width: 760px; padding: 60px 28px 90px; position: relative; z-index: 1; }
 .legal__back { display: inline-block; margin-bottom: 30px; color: var(--accent); font-family: var(--font-display); font-size: 0.9rem; }
 .legal__back:hover { color: var(--heading); }
 .legal h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 2.8rem); color: var(--heading); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
@@ -729,6 +732,17 @@ main { position: relative; z-index: 1; }
    Responsive
    ============================================================ */
 @media (min-width: 760px) { .carousel__nav { display: inline-grid; } }
+
+/* Below 760px the arrows would crowd the card, so they move under it in a
+   centred row. They stay visible, because one card shows at a time and swipe
+   alone gives no hint that there are more projects. */
+@media (max-width: 759px) {
+  .carousel { flex-wrap: wrap; gap: 0; }
+  .carousel__track { flex: 1 0 100%; order: -1; }
+  .carousel__nav { display: inline-grid; margin: 4px auto 0; }
+  .carousel__nav#carouselPrev { margin-right: 8px; }
+  .carousel__nav#carouselNext { margin-left: 8px; }
+}
 
 @media (max-width: 900px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
