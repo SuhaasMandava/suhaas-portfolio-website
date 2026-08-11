@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sky High Price Tag: analyzing SpaceX post-IPO performance and whether its $1.77 trillion valuation holds up. Research by Suhaas Mandava, August 2026." />
+  <title>SpaceX: Sky High Price Tag | Suhaas Mandava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="research.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080809'/><text x='50' y='50' font-family='monospace' font-size='48' font-weight='800' fill='%23e8e8ec' text-anchor='middle' dominant-baseline='central'>SM</text></svg>" />
+</head>
+<body>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__brand" data-magnetic>Suhaas<br />Mandava<span class="nav__dot">_</span></a>
+      <nav class="nav__links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="research.html" class="active">Research</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="icon-btn nav__burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ===== Ticker tape (live quotes via /api/quotes) ===== -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__row" id="tickerRow">
+        <span class="ticker__item"><span class="ticker__sym">AAPL</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">MSFT</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">NVDA</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">AMD</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">GOOGL</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">AMZN</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">META</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">TSLA</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">PLTR</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">AVGO</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">NFLX</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">SPY</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">VOO</span> <span class="flat">&#9644;</span></span>
+        <span class="ticker__item"><span class="ticker__sym">QQQ</span> <span class="flat">&#9644;</span></span>
+      </div>
+    </div>
+
+    <!-- ===== Hero ===== -->
+    <section class="rsrch-hero">
+      <a href="research.html" class="rsrch-back">&larr; All research</a>
+      <p class="eyebrow reveal">&hellip; /Post-IPO study &hellip;</p>
+      <h1 class="rsrch-title rsrch-title--paper reveal">Sky High Price Tag</h1>
+      <p class="rsrch-lead reveal">
+        SpaceX listed at a $1.77 trillion valuation, the largest IPO in history.
+        Two months later the stock had round tripped back to its offer price. I
+        went through the S-1 and the trading record to work out why.
+      </p>
+      <p class="rsrch-byline mono reveal">
+        Suhaas Mandava &middot; 08/11/2026 &middot; 15 pages &middot; 22 sources &middot; NASDAQ: SPCX
+      </p>
+      <div class="rsrch-actions reveal">
+        <a class="rsrch-btn" href="papers/spacex-post-ipo-performance.pdf" target="_blank" rel="noopener noreferrer">Open the PDF</a>
+        <a class="rsrch-btn rsrch-btn--ghost" href="papers/spacex-post-ipo-performance.pdf" download>Download</a>
+      </div>
+    </section>
+
+    <!-- ===== Overview ===== -->
+    <section>
+      <p class="section-label">Overview</p>
+      <div class="overview reveal">
+        <p>
+          I had been watching the SpaceX IPO rumors for years, so when the company
+          filed its S-1 and listed on the Nasdaq as SPCX on June 12, 2026, I wanted
+          to dig into it properly instead of just reading headlines. This was not a
+          normal listing. SpaceX raised about $75 billion at an implied $1.77
+          trillion valuation, more than three times the size of the previous record.
+        </p>
+        <p>
+          It is also not really one business anymore. SpaceX launches rockets, runs
+          the Starlink satellite internet network, and after merging with xAI in
+          February 2026 it owns a frontier AI lab and X as well. Buying the stock
+          means buying all three at once.
+        </p>
+        <p class="overview__thesis">
+          <strong>My argument:</strong> the valuation was priced for near flawless
+          execution across three very different businesses. Starlink genuinely
+          supports a large part of the price tag, but the stock's slide since June
+          suggests the market is already discounting the AI segment's losses and
+          Musk's concentrated control more than IPO day enthusiasm implied.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== Key points ===== -->
+    <section>
+      <p class="section-label">Key points</p>
+      <div class="kp-grid">
+        <article class="kp-card reveal">
+          <div class="kp-card__stat down">$225.64 to $108.27</div>
+          <h3 class="kp-card__title">A full round trip in two months</h3>
+          <p class="kp-card__body">
+            Priced at $135, opened at $150, peaked at $225.64 four days later, then
+            fell to an all time low of $108.27 after the first earnings report as a
+            public company. It now trades near the original offer price, with a beta
+            above 6, closer to a speculative small cap than to the company that
+            launches most of the world's commercial payloads.
+          </p>
+        </article>
+
+        <article class="kp-card reveal">
+          <div class="kp-card__stat up">$11.4B at 39%</div>
+          <h3 class="kp-card__title">Starlink is the real engine</h3>
+          <p class="kp-card__body">
+            Connectivity brought in $11.4 billion, about 61 percent of revenue,
+            growing near 50 percent a year at a 39 percent operating margin.
+            Subscribers went from 2.3 million in 2023 to over 10 million by early
+            2026. This is the strongest argument for the valuation.
+          </p>
+        </article>
+
+        <article class="kp-card reveal">
+          <div class="kp-card__stat down">$3.2B in, $6.4B out</div>
+          <h3 class="kp-card__title">Starlink profits fund the AI bet</h3>
+          <p class="kp-card__body">
+            The AI segment earned $3.2 billion and lost $6.4 billion, while
+            absorbing $12.7 billion of $20.7 billion in total capital spending. The
+            launch business, meanwhile, sits near a mature revenue ceiling unless
+            Starship meaningfully expands capacity.
+          </p>
+        </article>
+
+        <article class="kp-card reveal">
+          <div class="kp-card__stat down">80% vote, 42% owned</div>
+          <h3 class="kp-card__title">Control and ownership do not match</h3>
+          <p class="kp-card__body">
+            Dual class shares give Musk roughly 80 percent of the voting power on
+            about 42 percent of the economic ownership, with no sunset provision.
+            Buying the stock is closer to backing one person's judgment
+            indefinitely than to taking a normal ownership stake.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Context ===== -->
+    <section>
+      <p class="section-label">Context</p>
+      <div class="overview reveal">
+        <p>
+          I compared SPCX to Cerebras, an AI chip company that listed a month
+          earlier, and the shapes match: a huge debut pop, then a hard giveback.
+          Cerebras sat about 34.7 percent below its debut level, a slightly deeper
+          pullback than SpaceX's roughly 30 percent off its peak. Across 25 major
+          2026 IPOs the average return was 18 percent but the median was negative
+          17 percent, so a few outliers carry the average while the typical new
+          listing is down.
+        </p>
+        <p>
+          That reframed the chart for me. The drawdown looks less like something
+          specifically wrong with SpaceX and more like the standard pattern for
+          2026's most hyped, most capital hungry debuts: a scarcity driven pop,
+          then a reality check once real numbers and lock up expirations arrive.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== The paper ===== -->
+    <section>
+      <p class="section-label">The paper</p>
+      <div class="paper-cta reveal">
+        <div class="paper-cta__meta">
+          <h3 class="paper-cta__title">Sky High Price Tag: Analyzing SpaceX's Post-IPO Performance</h3>
+          <p class="paper-cta__sub mono">PDF &middot; 15 pages &middot; 22 sources &middot; 08/11/2026</p>
+        </div>
+        <div class="paper-cta__actions">
+          <a class="rsrch-btn" href="papers/spacex-post-ipo-performance.pdf" target="_blank" rel="noopener noreferrer">Read the full paper</a>
+          <a class="rsrch-btn rsrch-btn--ghost" href="papers/spacex-post-ipo-performance.pdf" download>Download</a>
+        </div>
+      </div>
+
+      <p class="disclaimer">
+        <strong>Disclaimer:</strong> This is an independent student research paper
+        prepared for academic purposes. It is not professional financial, legal, or
+        investment advice, and nothing in it is a recommendation to buy, sell, or
+        hold any security. All figures on stock price, revenue, segment
+        performance, and valuation reflect public reporting and company filings
+        available as of August 11, 2026. Markets and disclosures change quickly, so
+        some figures may already be outdated, approximate, or subject to revision.
+        Sources sometimes disagreed, and the most consistent figures across sources
+        were used where possible.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>Designed &amp; built by Suhaas Mandava · <a href="privacy-policy.html">Privacy Policy</a> · <a href="terms-of-use.html">Terms of Use</a></p>
+      <a href="index.html" class="footer__top">↑ Home</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
