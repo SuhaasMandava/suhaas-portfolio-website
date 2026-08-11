@@ -444,6 +444,66 @@ main { position: relative; z-index: 1; }
 }
 .stat:hover { transform: translateY(-6px); border-color: rgba(var(--accent-rgb), 0.5); box-shadow: var(--glow); }
 .stat:hover::before { opacity: 1; }
+
+/* ============================================================
+   GitHub activity: live "currently building" list
+   ============================================================ */
+.gh { padding: 26px 0 6px; }
+.gh.is-hidden { display: none; }
+.gh__head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-bottom: 14px;
+}
+.gh__title {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 0.72rem;
+  letter-spacing: 0.09em; text-transform: uppercase; color: var(--text-dim);
+}
+.gh__pulse {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.7);
+  animation: ghPulse 2.4s ease-in-out infinite;
+}
+@keyframes ghPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.gh__profile {
+  font-family: var(--font-display); font-size: 0.76rem; color: var(--text-dim);
+  transition: color var(--transition);
+}
+.gh__profile:hover { color: var(--accent); }
+
+.gh__list {
+  list-style: none; margin: 0; padding: 0;
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  background: var(--card); overflow: hidden;
+}
+.gh__item {
+  display: grid;
+  grid-template-columns: minmax(140px, auto) 1fr auto;
+  align-items: baseline; gap: 16px;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+.gh__list .gh__item:last-child { border-bottom: none; }
+.gh__item:hover { background: rgba(255, 255, 255, 0.022); }
+.gh__repo {
+  font-family: var(--font-display); font-weight: 700; font-size: 0.84rem;
+  color: var(--heading); transition: color var(--transition);
+}
+.gh__repo:hover { color: var(--accent); }
+.gh__msg {
+  color: var(--text-dim); font-size: 0.88rem;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
+}
+.gh__meta {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-display); font-size: 0.74rem;
+  color: var(--text-dim); opacity: 0.8; white-space: nowrap;
+}
+.gh__lang {
+  padding: 3px 9px; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--text-dim);
+}
 .stat__num {
   position: relative;
   font-family: var(--font-display); font-weight: 800;
@@ -774,6 +834,11 @@ main { position: relative; z-index: 1; }
   .exp__row { grid-template-columns: 1fr; gap: 6px; padding: 20px 18px; }
   .exp__total { text-align: left; }
   .hero__lead { font-size: 1.05rem; }
+
+  /* Repo, message and time cannot share a row on a phone. Stack them, and let
+     the commit message wrap instead of being truncated to a few words. */
+  .gh__item { grid-template-columns: 1fr; gap: 5px; padding: 16px 18px; }
+  .gh__msg { white-space: normal; }
 }
 
 /* ============================================================

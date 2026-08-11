@@ -102,6 +102,18 @@
       <div class="stat reveal"><span class="stat__num" data-count="2">0</span><span class="stat__label">Sites shipped</span></div>
     </section>
 
+    <!-- ===== GitHub activity =====
+         Populated by initGithub() from the same-origin /api/github function.
+         Starts hidden and is only revealed once real data arrives, so a failed
+         request or an empty response leaves no empty shell behind. -->
+    <section class="gh is-hidden reveal" id="gh" aria-label="Recent GitHub activity">
+      <div class="gh__head">
+        <p class="gh__title"><span class="gh__pulse" aria-hidden="true"></span> Currently building</p>
+        <a class="gh__profile" id="ghProfile" href="https://github.com/SuhaasMandava" target="_blank" rel="noopener noreferrer">View GitHub</a>
+      </div>
+      <ul class="gh__list" id="ghList"></ul>
+    </section>
+
     <!-- ===== Projects (featured carousel) ===== -->
     <section class="section" id="projects">
       <div class="section__head reveal">

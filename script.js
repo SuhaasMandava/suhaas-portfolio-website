@@ -570,6 +570,86 @@ function initBackToTop() {
   btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion() ? "auto" : "smooth" }));
 }
 
+// ---- GitHub activity (home page) ---------------------------------
+// Reads the same-origin /api/github function. The section is hidden until
+// real data arrives, so a failed request degrades to nothing rather than an
+// empty box. Timestamps are dropped once the work is old enough that showing
+// them would read as neglect rather than momentum.
+function initGithub() {
+  const section = document.getElementById("gh");
+  const list = document.getElementById("ghList");
+  if (!section || !list) return;
+
+  const DAY = 86400000;
+  const STALE_AFTER = 21 * DAY; // past this, show the work without the dates
+
+  const relative = (iso) => {
+    const diff = Date.now() - new Date(iso).getTime();
+    if (diff < 3600000) {
+      const m = Math.max(1, Math.round(diff / 60000));
+      return m + (m === 1 ? " minute ago" : " minutes ago");
+    }
+    if (diff < DAY) {
+      const h = Math.round(diff / 3600000);
+      return h + (h === 1 ? " hour ago" : " hours ago");
+    }
+    const d = Math.round(diff / DAY);
+    if (d < 30) return d + (d === 1 ? " day ago" : " days ago");
+    const mo = Math.round(d / 30);
+    return mo + (mo === 1 ? " month ago" : " months ago");
+  };
+
+  const render = (data) => {
+    const repos = (data && data.repos) || [];
+    if (!repos.length) return;
+
+    const fresh = data.latest && Date.now() - new Date(data.latest).getTime() < STALE_AFTER;
+
+    list.textContent = "";
+    repos.forEach((r) => {
+      const li = document.createElement("li");
+      li.className = "gh__item";
+
+      const a = document.createElement("a");
+      a.className = "gh__repo";
+      a.href = r.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = r.repo;
+
+      const msg = document.createElement("span");
+      msg.className = "gh__msg";
+      msg.textContent = r.description;
+
+      const meta = document.createElement("span");
+      meta.className = "gh__meta";
+      if (r.language) {
+        const lang = document.createElement("span");
+        lang.className = "gh__lang";
+        lang.textContent = r.language;
+        meta.appendChild(lang);
+      }
+      if (fresh) {
+        const time = document.createElement("span");
+        time.textContent = relative(r.at);
+        meta.appendChild(time);
+      }
+
+      li.append(a, msg, meta);
+      list.appendChild(li);
+    });
+
+    section.classList.remove("is-hidden");
+  };
+
+  fetch("/api/github", { cache: "no-store" })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((d) => d && render(d))
+    .catch(() => {
+      /* leave the section hidden */
+    });
+}
+
 // ---- Live market ticker (Research page) --------------------------
 // Pulls real quotes from the same-origin /api/quotes serverless function
 // (which holds the API key server-side). Falls back to the static markup if
@@ -628,6 +708,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCarousel();
   initBackToTop();
   initTicker();          // live market ticker (Research page only)
+  initGithub();          // live GitHub activity (home page only)
 
   initTyping();          // 3
   initScrollProgress();  // 4
