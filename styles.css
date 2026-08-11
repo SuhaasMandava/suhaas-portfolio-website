@@ -486,6 +486,10 @@ main { position: relative; z-index: 1; }
 }
 .gh__list .gh__item:last-child { border-bottom: none; }
 .gh__item:hover { background: rgba(255, 255, 255, 0.022); }
+.gh__item[data-href] { cursor: pointer; }
+/* Hovering anywhere on the row highlights the repo name, so it reads as one
+   target rather than a link sitting next to inert text. */
+.gh__item[data-href]:hover .gh__repo { color: var(--accent); }
 .gh__repo {
   font-family: var(--font-display); font-weight: 700; font-size: 0.84rem;
   color: var(--heading); transition: color var(--transition);
@@ -552,6 +556,7 @@ main { position: relative; z-index: 1; }
   transform-style: preserve-3d;
   transition: box-shadow var(--transition), border-color var(--transition);
   will-change: transform;
+  cursor: pointer;   /* the whole card opens its repo, see initCardLinks */
 }
 .feature:hover { border-color: rgba(var(--accent-rgb), 0.55); box-shadow: var(--glow); }
 /* Dark brushed-metal panels with a soft light streak (no colour). */

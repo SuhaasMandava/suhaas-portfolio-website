@@ -91,7 +91,7 @@ function renderProjects() {
         ? `<a class="feature__btn" href="${escapeHtml(p.demo)}" target="_blank" rel="noopener noreferrer">Live ${iconArrow}</a>`
         : "";
     return `
-      <article class="feature reveal ${variant}" data-tilt>
+      <article class="feature reveal ${variant}" data-tilt data-href="${escapeHtml(p.repo)}">
         ${media}
         <div class="feature__body">
           <h3 class="feature__title">${escapeHtml(p.title)}</h3>
@@ -105,7 +105,7 @@ function renderProjects() {
       </article>`;
   });
   cards.push(`
-    <article class="feature feature--placeholder feature--muted reveal" data-tilt>
+    <article class="feature feature--placeholder feature--muted reveal" data-tilt data-href="https://github.com/${GITHUB_USER}">
       <div class="feature__body">
         <h3 class="feature__title">More on the way</h3>
         <p class="feature__desc">I'm actively building. New projects will land here as I ship them, and I post them on GitHub.</p>
@@ -570,6 +570,31 @@ function initBackToTop() {
   btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion() ? "auto" : "smooth" }));
 }
 
+// ---- Whole-card links --------------------------------------------
+// Project cards and activity rows carry data-href so the entire card is
+// clickable, not just the small button inside it. Delegated from the document
+// so cards rendered later are covered without rebinding. Real links and
+// buttons inside a card keep their own behaviour, and the inner links remain
+// the keyboard and screen reader path, so this adds no extra tab stops.
+function initCardLinks() {
+  document.addEventListener("click", (e) => {
+    const card = e.target.closest("[data-href]");
+    if (!card) return;
+    if (e.target.closest("a, button")) return; // let the real control handle it
+    const url = card.getAttribute("data-href");
+    if (url) window.open(url, "_blank", "noopener");
+  });
+
+  // Middle click opens in a background tab, matching normal link behaviour.
+  document.addEventListener("auxclick", (e) => {
+    if (e.button !== 1) return;
+    const card = e.target.closest("[data-href]");
+    if (!card || e.target.closest("a, button")) return;
+    const url = card.getAttribute("data-href");
+    if (url) window.open(url, "_blank", "noopener");
+  });
+}
+
 // ---- GitHub activity (home page) ---------------------------------
 // Reads the same-origin /api/github function. The section is hidden until
 // real data arrives, so a failed request degrades to nothing rather than an
@@ -609,6 +634,7 @@ function initGithub() {
     repos.forEach((r) => {
       const li = document.createElement("li");
       li.className = "gh__item";
+      li.setAttribute("data-href", r.url);
 
       const a = document.createElement("a");
       a.className = "gh__repo";
@@ -709,6 +735,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initBackToTop();
   initTicker();          // live market ticker (Research page only)
   initGithub();          // live GitHub activity (home page only)
+  initCardLinks();       // whole project card / activity row is clickable
 
   initTyping();          // 3
   initScrollProgress();  // 4
