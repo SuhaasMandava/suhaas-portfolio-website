@@ -27,6 +27,15 @@ const projects = [
     demo: "https://f1-strategy-suhaas.streamlit.app",
     image: "assets/tire_gantt_chart.png",
   },
+  {
+    title: "Closing Bell Daily",
+    description:
+      "A daily stock market wrap-up: one article per trading day, written in MDX and prerendered at build time, with a live quote ticker running across the top. Built with Next.js and TypeScript. The ticker pulls from Alpaca through a layered caching and rate-limit setup, so a burst of visitors still costs a single upstream call, and it falls back to the last good quotes instead of breaking when the API pushes back.",
+    tags: ["TypeScript", "Next.js", "MDX"],
+    repo: `https://github.com/${GITHUB_USER}/Closing-Bell-Daily`,
+    demo: "https://closing-bell-daily.vercel.app",
+    image: "assets/closing_bell_daily_cardimg.png",
+  },
 ];
 
 // ---- Skills ------------------------------------------------------
