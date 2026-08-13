@@ -17,6 +17,7 @@ const projects = [
     repo: `https://github.com/${GITHUB_USER}/Closing-Bell-Daily`,
     demo: "https://closing-bell-daily.vercel.app",
     image: "assets/closing_bell_daily_cardimg.png",
+    imagePos: "left",   // headline sits at the left edge; centering clips it
   },
   {
     title: "F1 Strategy Dashboard",
@@ -92,8 +93,13 @@ function renderProjects() {
     const tags = p.tags.map((t) => `<span>${escapeHtml(t)}</span>`).join("");
     // Image thumbnail when provided, else the gradient placeholder. The image
     // fills the same media area (object-fit: cover) and is clipped by the card.
+    // imagePos anchors that crop when the part worth showing isn't centered
+    // (e.g. a screenshot whose headline sits at the left edge). It has to be a
+    // class rather than an inline style: the CSP has no 'unsafe-inline' for
+    // style-src, so a style="" attribute would be dropped.
+    const posClass = p.imagePos ? ` feature__media--${escapeHtml(p.imagePos)}` : "";
     const media = p.image
-      ? `<img class="feature__media feature__media--img" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)} preview" loading="lazy" />`
+      ? `<img class="feature__media feature__media--img${posClass}" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)} preview" loading="lazy" />`
       : `<div class="feature__media"></div>`;
     const liveBtn =
       p.demo && p.demo !== "#"
