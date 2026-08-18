@@ -291,24 +291,44 @@ function initTilt() {
   if (reduceMotion() || isTouch()) return;
   document.querySelectorAll("[data-tilt]").forEach((el) => {
     const MAX = 9; // degrees
-    let raf = null, rx = 0, ry = 0, rect = null;
-    const apply = () => {
-      el.style.transform = `perspective(900px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
-      raf = null;
+    const EASE = 0.18; // lerp factor: lower = smoother/laggier, higher = snappier
+    let raf = null, rect = null;
+    let targetRx = 0, targetRy = 0, curRx = 0, curRy = 0;
+    let hovering = false;
+
+    // Runs every frame while hovering (or settling), independent of mousemove
+    // rate, so fast cursor movement eases into place instead of snapping.
+    const loop = () => {
+      curRx += (targetRx - curRx) * EASE;
+      curRy += (targetRy - curRy) * EASE;
+      el.style.transform = `perspective(900px) rotateX(${curRx.toFixed(2)}deg) rotateY(${curRy.toFixed(2)}deg)`;
+      const settled = Math.abs(targetRx - curRx) < 0.01 && Math.abs(targetRy - curRy) < 0.01;
+      if (hovering || !settled) {
+        raf = requestAnimationFrame(loop);
+      } else {
+        raf = null;
+      }
     };
+
     // Measure once on enter, not on every mousemove.
-    el.addEventListener("mouseenter", () => { rect = el.getBoundingClientRect(); }, { passive: true });
+    el.addEventListener("mouseenter", () => {
+      rect = el.getBoundingClientRect();
+      hovering = true;
+      if (!raf) raf = requestAnimationFrame(loop);
+    }, { passive: true });
     el.addEventListener("mousemove", (e) => {
       if (!rect) rect = el.getBoundingClientRect();
-      const px = (e.clientX - rect.left) / rect.width - 0.5;
-      const py = (e.clientY - rect.top) / rect.height - 0.5;
-      ry = px * MAX * 2;
-      rx = -py * MAX * 2;
-      if (!raf) raf = requestAnimationFrame(apply);
+      // Clamp to the card bounds so a fast cursor that lands past the edge
+      // between events can't push rotation beyond MAX.
+      const px = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width)) - 0.5;
+      const py = Math.min(1, Math.max(0, (e.clientY - rect.top) / rect.height)) - 0.5;
+      targetRy = px * MAX * 2;
+      targetRx = -py * MAX * 2;
     }, { passive: true });
     el.addEventListener("mouseleave", () => {
-      rx = 0; ry = 0; rect = null;
-      el.style.transform = "perspective(900px) rotateX(0) rotateY(0)";
+      hovering = false;
+      targetRx = 0; targetRy = 0; rect = null;
+      if (!raf) raf = requestAnimationFrame(loop);
     }, { passive: true });
   });
 }
