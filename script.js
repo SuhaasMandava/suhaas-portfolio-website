@@ -20,6 +20,14 @@ const projects = [
     imagePos: "left",   // headline sits at the left edge; centering clips it
   },
   {
+    title: "OneIsland",
+    description:
+      "Built at DreamHacks 2026: resource intelligence for island communities riding out a cyclone. Every household logs its water, food, solar, and battery reserves, and a live pipeline forecasts who runs out first as the storm worsens, then matches that shortage to a neighbor with a surplus, nearest island first and never draining a donor past their own safety margin. The scoring is deliberately rules-based rather than a trained model, so every ranking can be explained out loud, and a household on a dialysis machine always outranks one that is merely low on hours. Plain HTML, CSS, and vanilla JavaScript on top of Supabase, with a live Open-Meteo feed for Port Vila, Vanuatu.",
+    tags: ["JavaScript", "Supabase", "Open-Meteo"],
+    repo: `https://github.com/${GITHUB_USER}/OneIsland`,
+    demo: "https://one-island.vercel.app",
+  },
+  {
     title: "F1 Strategy Dashboard",
     description:
       "An interactive dashboard that breaks down Formula 1 race strategy from real session data. It visualizes tire stints, lap-time pace, pit windows, and undercut/overcut swings to show how races are won and lost on strategy alone. Built in Python with FastF1, Streamlit, and Plotly.",
@@ -58,13 +66,13 @@ const experience = [
   { range: "Recently", duration: "", org: "Completed CS50", role: "Harvard's Intro to Computer Science" },
   { range: "Now", duration: "", org: "Geo IT Labs", role: "Working part-time", url: "https://geoitlabs.com", active: true },
   { range: "Now", duration: "", org: "AP Computer Science A", role: "Taking CS coursework in high school" },
-  { range: "Next", duration: "", org: "Hackathons & internships", role: "Open to them (none yet) and looking" },
+  { range: "Aug 2026", duration: "", org: "DreamHacks 2026", role: "First hackathon; built OneIsland" },
+  { range: "Next", duration: "", org: "More hackathons & internships", role: "Open to them and looking" },
 ];
 
 // ---- Hackathons --------------------------------------------------
-// Empty for now, and the section says so rather than pretending otherwise.
-// Add an object per event and the grid fills itself; the empty-state card
-// disappears on its own once there's at least one entry here.
+// One object per event and the grid fills itself. Keep the newest first;
+// the empty-state card below only shows if this array is emptied out again.
 //
 //   {
 //     event: "HackTX 2026",              // the hackathon itself
@@ -78,7 +86,18 @@ const experience = [
 //     devpost: "https://devpost.com/software/...",  // optional
 //     repo: "https://github.com/...",               // optional
 //   }
-const hackathons = [];
+const hackathons = [
+  {
+    event: "DreamHacks 2026",
+    date: "Aug 2026",
+    location: "Virtual",
+    project: "OneIsland",
+    description:
+      "Resource intelligence for island communities preparing for a storm. Households log their water, food, solar, and battery reserves; the app forecasts who runs short as the storm intensifies and matches every shortage to a neighbor with a surplus, protecting critical medical dependencies first. Built against a real setting: five Vanuatu islands, real zone adjacency, and a live weather feed for Port Vila. Vanilla JavaScript with Supabase for auth, data, and realtime sync.",
+    tags: ["JavaScript", "Supabase", "Open-Meteo"],
+    repo: `https://github.com/${GITHUB_USER}/OneIsland`,
+  },
+];
 
 // ---- Typing effect roles -----------------------------------------
 const typedRoles = ["Student Developer", "Self-Taught Coder", "Smart Home Tinkerer", "Aspiring AI Engineer"];
