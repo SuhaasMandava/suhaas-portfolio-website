@@ -738,6 +738,76 @@ main { position: relative; z-index: 1; }
 .exp__total em { color: var(--accent); font-weight: 600; }
 
 /* ============================================================
+   Hackathons: card grid
+   ============================================================ */
+.hacks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.hack {
+  position: relative;
+  display: flex; flex-direction: column; align-items: flex-start;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 30px 26px;
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.hack::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
+}
+.hack:hover { box-shadow: var(--glow); border-color: rgba(var(--accent-rgb), 0.4); }
+.hack:hover::before { transform: scaleX(1); }
+/* A card with a placement keeps its top rule lit, so a win reads at a glance. */
+.hack--won::before { transform: scaleX(1); }
+
+.hack__head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 14px; width: 100%; margin-bottom: 14px;
+}
+.hack__event {
+  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
+  color: var(--accent); letter-spacing: 0.02em;
+}
+.hack__date { font-family: var(--font-display); font-size: 0.75rem; color: var(--text-dim); white-space: nowrap; }
+.hack__badge {
+  font-family: var(--font-display); font-size: 0.7rem; font-weight: 700;
+  padding: 5px 12px; border-radius: var(--radius-pill);
+  background: var(--grad); color: var(--accent-ink);
+  margin-bottom: 12px;
+}
+.hack__title { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--heading); }
+.hack__meta { font-family: var(--font-display); font-size: 0.78rem; color: var(--text-dim); margin-top: 6px; }
+.hack__desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.65; margin-top: 12px; }
+.hack__tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 16px 0 0; }
+.hack__tags span {
+  font-family: var(--font-display); font-size: 0.68rem;
+  padding: 4px 10px; border-radius: var(--radius-pill);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+}
+.hack__tags span:nth-child(even) {
+  color: var(--accent-2);
+  background: rgba(var(--accent-2-rgb), 0.12);
+  border-color: rgba(var(--accent-2-rgb), 0.25);
+}
+/* Links pin to the bottom so buttons line up across cards of unequal height. */
+.hack__links { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: auto; padding-top: 20px; }
+.hack__btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: var(--radius-pill);
+  background: var(--grad); color: var(--accent-ink);
+  font-weight: 600; font-size: 0.85rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.hack__btn:hover { transform: translateY(-2px); box-shadow: var(--glow); }
+
+/* Empty state: no entries yet, so one card spans the grid and says so. */
+.hack--empty { grid-column: 1 / -1; }
+.hack--empty .hack__desc { max-width: 60ch; }
+
+/* ============================================================
    Contact
    ============================================================ */
 .section--contact { text-align: center; }
@@ -794,6 +864,9 @@ main { position: relative; z-index: 1; }
 .exp__row:nth-child(3) { --reveal-delay: 140ms; }
 .exp__row:nth-child(4) { --reveal-delay: 210ms; }
 .exp__row:nth-child(n+5) { --reveal-delay: 280ms; }
+.hacks .hack:nth-child(2) { --reveal-delay: 80ms; }
+.hacks .hack:nth-child(3) { --reveal-delay: 160ms; }
+.hacks .hack:nth-child(4) { --reveal-delay: 240ms; }
 
 @keyframes revealIn { to { opacity: 1; translate: 0 0; scale: 1; } }
 @keyframes caretBlink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
@@ -839,6 +912,8 @@ main { position: relative; z-index: 1; }
   .nav__burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
   .skills { grid-template-columns: 1fr; }
+  .hacks { grid-template-columns: 1fr; }
+  .hack { padding: 24px 22px 22px; }
   .feature { grid-template-columns: 1fr; }
   .feature__media { min-height: 150px; }
   .exp__row { grid-template-columns: 1fr; gap: 6px; padding: 20px 18px; }

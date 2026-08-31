@@ -61,6 +61,25 @@ const experience = [
   { range: "Next", duration: "", org: "Hackathons & internships", role: "Open to them (none yet) and looking" },
 ];
 
+// ---- Hackathons --------------------------------------------------
+// Empty for now, and the section says so rather than pretending otherwise.
+// Add an object per event and the grid fills itself; the empty-state card
+// disappears on its own once there's at least one entry here.
+//
+//   {
+//     event: "HackTX 2026",              // the hackathon itself
+//     date: "Oct 2026",
+//     location: "Austin, TX",            // optional
+//     duration: "36h",                   // optional
+//     result: "Winner, Best Beginner Hack",  // optional; omit if you just shipped
+//     project: "What you built",
+//     description: "One short paragraph on what it does and how you built it.",
+//     tags: ["Python", "FastAPI"],
+//     devpost: "https://devpost.com/software/...",  // optional
+//     repo: "https://github.com/...",               // optional
+//   }
+const hackathons = [];
+
 // ---- Typing effect roles -----------------------------------------
 const typedRoles = ["Student Developer", "Self-Taught Coder", "Smart Home Tinkerer", "Aspiring AI Engineer"];
 
@@ -161,6 +180,56 @@ function renderExperience() {
         <div class="exp__org">${org}</div>
         <div class="exp__role">${escapeHtml(e.role)}</div>
       </div>`;
+    })
+    .join("");
+}
+
+function renderHackathons() {
+  const grid = document.getElementById("hackGrid");
+  if (!grid) return;
+
+  // No entries yet. The section still renders, because "looking for my first"
+  // is the honest answer and it matches what the Learning Journey already says.
+  if (!hackathons.length) {
+    grid.innerHTML = `
+      <article class="hack hack--empty reveal">
+        <h3 class="hack__title">Looking for my first</h3>
+        <p class="hack__desc">I haven't been to a hackathon yet, and I'd like to change that. If you're running one that's open to high schoolers, or you need a teammate who'll actually ship something by the deadline, get in touch.</p>
+        <div class="hack__links">
+          <a class="hack__btn" href="mailto:hasumandava@gmail.com">Get in touch ${iconArrow}</a>
+        </div>
+      </article>`;
+    return;
+  }
+
+  grid.innerHTML = hackathons
+    .map((h) => {
+      const meta = [h.location, h.duration].filter(Boolean).map(escapeHtml).join(" · ");
+      const tags = (h.tags || []).map((t) => `<span>${escapeHtml(t)}</span>`).join("");
+      const links = [
+        h.devpost
+          ? `<a class="hack__btn" href="${escapeHtml(h.devpost)}" target="_blank" rel="noopener noreferrer">Devpost ${iconArrow}</a>`
+          : "",
+        h.repo
+          ? `<a class="hack__btn" href="${escapeHtml(h.repo)}" target="_blank" rel="noopener noreferrer">${iconGithub} Code</a>`
+          : "",
+      ].join("");
+      // Whole-card click target, handled by initCardLinks. Devpost first when
+      // both exist: it's the writeup, the repo is one click further in.
+      const href = h.devpost || h.repo || "";
+      return `
+      <article class="hack reveal${h.result ? " hack--won" : ""}" data-tilt${href ? ` data-href="${escapeHtml(href)}"` : ""}>
+        <div class="hack__head">
+          <span class="hack__event">${escapeHtml(h.event)}</span>
+          <span class="hack__date">${escapeHtml(h.date)}</span>
+        </div>
+        ${h.result ? `<span class="hack__badge">${escapeHtml(h.result)}</span>` : ""}
+        <h3 class="hack__title">${escapeHtml(h.project)}</h3>
+        ${meta ? `<p class="hack__meta">${meta}</p>` : ""}
+        <p class="hack__desc">${escapeHtml(h.description)}</p>
+        ${tags ? `<div class="hack__tags">${tags}</div>` : ""}
+        ${links ? `<div class="hack__links">${links}</div>` : ""}
+      </article>`;
     })
     .join("");
 }
@@ -763,6 +832,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProjects();
   renderSkills();
   renderExperience();
+  renderHackathons();
 
   initNav();
   initReveal();

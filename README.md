@@ -7,6 +7,7 @@ A fast, responsive, dark-mode-friendly personal portfolio built with **plain HTM
 - **About** — bio, tech stack, profile card
 - **Projects** — cards linking out to GitHub repos (+ optional live demos)
 - **Skills** — grouped by category
+- **Hackathons** — one card per event; shows a "looking for my first" card while empty
 - **Contact** — email CTA and socials
 
 ## Run it
@@ -28,6 +29,7 @@ All content lives in easy-to-edit places:
 |------|-------|
 | Projects | `projects` array in `script.js` |
 | Skills | `skillGroups` array in `script.js` |
+| Hackathons | `hackathons` array in `script.js` (entry shape is documented above it) |
 | GitHub username | `GITHUB_USER` const in `script.js` |
 | Bio / about text | `#about` section in `index.html` |
 | Name, title, email, social URLs | `index.html` (hero + contact) |
