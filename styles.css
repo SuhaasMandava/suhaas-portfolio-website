@@ -155,11 +155,12 @@ body::before {
    ============================================================ */
 .eyebrow {
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  color: var(--accent);
-  letter-spacing: 0.02em;
-  margin-bottom: 22px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  letter-spacing: 0.14em;
+  margin-bottom: 18px;
 }
 
 .display {
@@ -170,8 +171,9 @@ body::before {
   letter-spacing: -0.03em;
 }
 .display--section {
-  font-size: clamp(2.6rem, 9vw, 6rem);
-  margin-bottom: 34px;
+  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+  line-height: 1.08;
+  margin-bottom: 22px;
 }
 
 /* Pills */
@@ -371,14 +373,14 @@ main { position: relative; z-index: 1; }
   margin: 0 auto;
   padding: 0 28px;   /* matches .container so content aligns with the rest of the page */
 }
-.hero__kicker { font-family: var(--font-display); color: var(--accent); font-size: 1rem; margin-bottom: 16px; }
+.hero__kicker { font-family: var(--font-display); color: var(--text-dim); font-size: 0.9rem; letter-spacing: 0.02em; margin-bottom: 14px; }
 /* Headline must never wrap: the typing cycle stays on one line at every width.
    Font-size scales with the viewport (clamp) so the longest phrase
    ("Aspiring AI Engineer", ~11.5em wide in JetBrains Mono) fits inside the
    container down to ~320px instead of wrapping. white-space: nowrap enforces
    the single line and keeps the blinking caret inline right after the text. */
 .hero__title {
-  font-size: clamp(1.2rem, 6.2vw, 5.25rem);
+  font-size: clamp(1.2rem, 5.6vw, 4.4rem);
   min-height: 1.1em;
   white-space: nowrap;
 }
@@ -395,7 +397,7 @@ main { position: relative; z-index: 1; }
   vertical-align: -0.08em;
   animation: caretBlink 1s steps(1) infinite;
 }
-.hero__lead { max-width: 540px; margin-top: 30px; font-size: 1.15rem; color: var(--text-dim); }
+.hero__lead { max-width: 540px; margin-top: 24px; font-size: 1.05rem; line-height: 1.7; color: var(--text-dim); }
 .hero__actions { margin-top: 36px; }
 .social-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .social-row--center { justify-content: center; }
@@ -492,7 +494,7 @@ main { position: relative; z-index: 1; }
 .stat__num {
   position: relative;
   font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.75rem, 3.4vw, 2.35rem);
   background: var(--metal-text);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
@@ -505,7 +507,7 @@ main { position: relative; z-index: 1; }
    ============================================================ */
 .section { padding: clamp(60px, 10vw, 120px) 0; }
 .section__head { margin-bottom: 40px; }
-.section__intro { color: var(--text-dim); max-width: 560px; font-size: 1.05rem; margin-bottom: 30px; }
+.section__intro { color: var(--text-dim); max-width: 60ch; font-size: 1rem; line-height: 1.7; margin-bottom: 28px; }
 
 /* ============================================================
    Projects: featured carousel (with 3D tilt)
@@ -602,7 +604,7 @@ main { position: relative; z-index: 1; }
    About
    ============================================================ */
 .about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 50px; align-items: center; }
-.about__hello { font-size: 1.35rem; color: var(--heading); font-weight: 500; margin-bottom: 20px; line-height: 1.4; }
+.about__hello { font-size: 1.2rem; color: var(--heading); font-weight: 500; margin-bottom: 20px; line-height: 1.4; }
 .about__intro p { color: var(--text-dim); margin-bottom: 14px; }
 .about__intro a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(var(--accent-rgb), 0.5); transition: text-decoration-color var(--transition); }
 .about__intro a:hover { text-decoration-color: var(--accent); }
@@ -792,7 +794,7 @@ main { position: relative; z-index: 1; }
    Contact
    ============================================================ */
 .section--contact { text-align: center; }
-.contact__lead { max-width: 480px; margin: 0 auto 34px; color: var(--text-dim); font-size: 1.1rem; }
+.contact__lead { max-width: 480px; margin: 0 auto 34px; color: var(--text-dim); font-size: 1.02rem; line-height: 1.7; }
 .section--contact .cta { margin-bottom: 40px; }
 
 /* ============================================================
