@@ -7,6 +7,13 @@
 
 :root {
   --max-width: 1180px;
+
+  /* Spacing scale. Grids, card padding, and section rhythm all draw from here
+     so nothing is off by a stray 2px. */
+  --space-section: clamp(56px, 8vw, 96px);
+  --space-card: 26px;
+  --space-gap: 18px;
+
   --radius-lg: 18px;
   --radius-md: 14px;
   --radius-sm: 10px;
@@ -405,11 +412,11 @@ main { position: relative; z-index: 1; }
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+  gap: var(--space-gap);
   padding: 30px 0 10px;
 }
 .stat {
-  padding: 26px 22px;
+  padding: var(--space-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   background: var(--card);
@@ -460,7 +467,7 @@ main { position: relative; z-index: 1; }
   display: grid;
   grid-template-columns: minmax(140px, auto) 1fr auto;
   align-items: baseline; gap: 16px;
-  padding: 15px 20px;
+  padding: 15px var(--space-card);
   border-bottom: 1px solid var(--border);
   transition: background var(--transition);
 }
@@ -502,8 +509,13 @@ main { position: relative; z-index: 1; }
 /* ============================================================
    Sections
    ============================================================ */
-.section { padding: clamp(60px, 10vw, 120px) 0; }
-.section__head { margin-bottom: 40px; }
+.section { padding: var(--space-section) 0; }
+/* Every section leads with the same block: label, heading, optional intro. */
+.section__head { margin-bottom: 36px; max-width: 60ch; }
+.section__head .display--section { margin-bottom: 16px; }
+.section__head .section__intro:last-child,
+.section__head .contact__lead:last-child { margin-bottom: 0; }
+.section--contact .section__head { max-width: none; margin-inline: auto; }
 .section__intro { color: var(--text-dim); max-width: 60ch; font-size: 1rem; line-height: 1.7; margin-bottom: 28px; }
 
 /* ============================================================
@@ -511,7 +523,7 @@ main { position: relative; z-index: 1; }
    ============================================================ */
 .carousel { display: flex; align-items: center; gap: 18px; }
 .carousel__track {
-  display: flex; gap: 22px;
+  display: flex; gap: var(--space-gap);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -564,7 +576,7 @@ main { position: relative; z-index: 1; }
 .feature__body {
   background: var(--card);
   color: var(--text);
-  padding: 28px 26px;
+  padding: var(--space-card);
   display: flex; flex-direction: column;
   transform: translateZ(30px);
 }
@@ -628,7 +640,7 @@ main { position: relative; z-index: 1; }
 /* "Where I'm headed" goals block inside About */
 .goals {
   margin-top: 28px;
-  padding: 20px 24px;
+  padding: 20px var(--space-card);
   border: 1px solid rgba(var(--accent-rgb), 0.3);
   border-radius: var(--radius-md);
   background: var(--grad-soft);
@@ -647,13 +659,13 @@ main { position: relative; z-index: 1; }
 /* ============================================================
    Skills: dark cards with accent gradient bar + colour tags
    ============================================================ */
-.skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-gap); }
 .skill-card {
   position: relative;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 30px 30px 28px;
+  padding: var(--space-card);
   overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
@@ -687,7 +699,7 @@ main { position: relative; z-index: 1; }
 .exp { border-top: 1px solid var(--border); }
 .exp__row {
   display: grid; grid-template-columns: 0.8fr 1fr 1.4fr; gap: 24px; align-items: center;
-  padding: 26px 26px;
+  padding: 22px var(--space-card);
   border-bottom: 1px solid var(--border);
   border-radius: var(--radius-md);
   position: relative;
@@ -715,14 +727,14 @@ main { position: relative; z-index: 1; }
 /* ============================================================
    Hackathons: card grid
    ============================================================ */
-.hacks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.hacks { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-gap); }
 .hack {
   position: relative;
   display: flex; flex-direction: column; align-items: flex-start;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 28px 30px 26px;
+  padding: var(--space-card);
   overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
@@ -781,7 +793,7 @@ main { position: relative; z-index: 1; }
    Contact
    ============================================================ */
 .section--contact { text-align: center; }
-.contact__lead { max-width: 480px; margin: 0 auto 34px; color: var(--text-dim); font-size: 1.02rem; line-height: 1.7; }
+.contact__lead { max-width: 480px; margin: 0 auto; color: var(--text-dim); font-size: 1.02rem; line-height: 1.7; }
 .section--contact .cta { margin-bottom: 40px; }
 
 /* ============================================================
@@ -883,7 +895,7 @@ main { position: relative; z-index: 1; }
 
   .skills { grid-template-columns: 1fr; }
   .hacks { grid-template-columns: 1fr; }
-  .hack { padding: 24px 22px 22px; }
+  .hack { padding: 22px; }
   .feature { grid-template-columns: 1fr; }
   .feature__media { min-height: 150px; }
   .exp__row { grid-template-columns: 1fr; gap: 6px; padding: 20px 18px; }
