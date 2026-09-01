@@ -193,12 +193,9 @@ body::before {
     border-color var(--transition), color var(--transition), box-shadow var(--transition);
 }
 .pill:hover {
-  border-color: rgba(var(--accent-rgb), 0.6);
-  color: var(--accent);
-  box-shadow: var(--glow);
+  border-color: var(--border-strong);
+  color: var(--heading);
 }
-.pill svg { transition: transform var(--transition); }
-.pill:hover svg { transform: scale(1.12); }
 
 /* CTA: gradient pill + circular arrow */
 .cta { display: inline-flex; align-items: center; gap: 10px; }
@@ -224,7 +221,7 @@ body::before {
   filter: brightness(1.04);
   box-shadow: 0 12px 26px -12px rgba(0, 0, 0, 0.7);
 }
-.cta:hover .cta__arrow { transform: translateX(4px); background: var(--grad); color: var(--accent-ink); border-color: transparent; }
+.cta:hover .cta__arrow { transform: translateX(3px); border-color: var(--accent); }
 .cta:active .cta__pill { transform: scale(0.98); }
 .cta--center { justify-content: center; }
 
@@ -239,7 +236,7 @@ body::before {
   cursor: pointer;
   transition: transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
-.icon-circle:hover { background: var(--grad); color: var(--accent-ink); border-color: transparent; box-shadow: var(--glow); }
+.icon-circle:hover { background: var(--card-2); color: var(--heading); border-color: var(--border-strong); }
 .icon-circle:active { transform: scale(0.94); }
 .icon-circle:disabled { opacity: 0.3; cursor: default; background: var(--surface); color: var(--text); box-shadow: none; }
 
@@ -254,7 +251,7 @@ body::before {
   cursor: pointer;
   transition: border-color var(--transition), color var(--transition), background var(--transition);
 }
-.icon-btn:hover { border-color: rgba(var(--accent-rgb), 0.6); color: var(--accent); }
+.icon-btn:hover { border-color: var(--border-strong); color: var(--heading); }
 
 /* ============================================================
    Navbar
@@ -425,7 +422,7 @@ main { position: relative; z-index: 1; }
   background: var(--grad-soft); opacity: 0;
   transition: opacity var(--transition);
 }
-.stat:hover { transform: translateY(-6px); border-color: rgba(var(--accent-rgb), 0.5); box-shadow: var(--glow); }
+.stat:hover { transform: translateY(-3px); border-color: var(--border-strong); }
 .stat:hover::before { opacity: 1; }
 
 /* ============================================================
@@ -537,11 +534,11 @@ main { position: relative; z-index: 1; }
   border: 1px solid var(--border);
   background: var(--card);
   transform-style: preserve-3d;
-  transition: box-shadow var(--transition), border-color var(--transition);
+  transition: border-color var(--transition);
   will-change: transform;
   cursor: pointer;   /* the whole card opens its repo, see initCardLinks */
 }
-.feature:hover { border-color: rgba(var(--accent-rgb), 0.55); box-shadow: var(--glow); }
+.feature:hover { border-color: var(--border-strong); }
 /* Dark brushed-metal panels with a soft light streak (no colour). */
 .feature__media {
   background:
@@ -577,14 +574,9 @@ main { position: relative; z-index: 1; }
 .feature__tags span {
   font-family: var(--font-display); font-size: 0.68rem;
   padding: 4px 10px; border-radius: var(--radius-pill);
-  color: var(--accent);
-  background: rgba(var(--accent-rgb), 0.12);
-  border: 1px solid rgba(var(--accent-rgb), 0.25);
-}
-.feature__tags span:nth-child(even) {
-  color: var(--accent-2);
-  background: rgba(var(--accent-2-rgb), 0.12);
-  border-color: rgba(var(--accent-2-rgb), 0.25);
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
 }
 .feature__links { display: flex; gap: 10px; align-items: center; }
 .feature__btn {
@@ -594,7 +586,7 @@ main { position: relative; z-index: 1; }
   font-weight: 600; font-size: 0.85rem;
   transition: transform var(--transition), box-shadow var(--transition);
 }
-.feature__btn:hover { transform: translateY(-2px); box-shadow: var(--glow); }
+.feature__btn:hover { filter: brightness(1.04); }
 .feature__btn--ghost { background: transparent; color: var(--accent); border: 1px solid rgba(var(--accent-rgb), 0.4); }
 
 .feature--placeholder { grid-template-columns: 1fr; align-items: center; text-align: center; border-style: dashed; }
@@ -623,7 +615,7 @@ main { position: relative; z-index: 1; }
   transition: box-shadow var(--transition), border-color var(--transition);
   will-change: transform;
 }
-.photo-frame:hover { box-shadow: var(--glow); border-color: var(--accent); }
+.photo-frame:hover { border-color: var(--border-strong); }
 .photo-frame span {
   font-family: var(--font-display); font-weight: 800; font-size: 3.4rem;
   background: var(--metal-text);
@@ -670,7 +662,7 @@ main { position: relative; z-index: 1; }
   background: var(--grad); transform: scaleX(0); transform-origin: left;
   transition: transform 0.4s var(--ease-out);
 }
-.skill-card:hover { transform: translateY(-6px); box-shadow: var(--glow); border-color: rgba(var(--accent-rgb), 0.4); }
+.skill-card:hover { transform: translateY(-3px); border-color: var(--border-strong); }
 .skill-card:hover::before { transform: scaleX(1); }
 .skill-card h3 {
   font-family: var(--font-display); font-weight: 700; font-size: 1.15rem;
@@ -687,7 +679,7 @@ main { position: relative; z-index: 1; }
   border: 1px solid var(--border);
   transition: transform var(--transition), color var(--transition), border-color var(--transition), background var(--transition);
 }
-.skill-card__items span:hover { transform: translateY(-2px); color: var(--accent); border-color: rgba(var(--accent-rgb), 0.5); background: rgba(var(--accent-rgb), 0.14); }
+.skill-card__items span:hover { color: var(--heading); border-color: var(--border-strong); }
 
 /* ============================================================
    Experience: table / list
@@ -739,7 +731,7 @@ main { position: relative; z-index: 1; }
   background: var(--grad); transform: scaleX(0); transform-origin: left;
   transition: transform 0.4s var(--ease-out);
 }
-.hack:hover { box-shadow: var(--glow); border-color: rgba(var(--accent-rgb), 0.4); }
+.hack:hover { transform: translateY(-3px); border-color: var(--border-strong); }
 .hack:hover::before { transform: scaleX(1); }
 /* A card with a placement keeps its top rule lit, so a win reads at a glance. */
 .hack--won::before { transform: scaleX(1); }
@@ -766,14 +758,9 @@ main { position: relative; z-index: 1; }
 .hack__tags span {
   font-family: var(--font-display); font-size: 0.68rem;
   padding: 4px 10px; border-radius: var(--radius-pill);
-  color: var(--accent);
-  background: rgba(var(--accent-rgb), 0.12);
-  border: 1px solid rgba(var(--accent-rgb), 0.25);
-}
-.hack__tags span:nth-child(even) {
-  color: var(--accent-2);
-  background: rgba(var(--accent-2-rgb), 0.12);
-  border-color: rgba(var(--accent-2-rgb), 0.25);
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
 }
 /* Links pin to the bottom so buttons line up across cards of unequal height. */
 .hack__links { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: auto; padding-top: 20px; }
@@ -784,7 +771,7 @@ main { position: relative; z-index: 1; }
   font-weight: 600; font-size: 0.85rem;
   transition: transform var(--transition), box-shadow var(--transition);
 }
-.hack__btn:hover { transform: translateY(-2px); box-shadow: var(--glow); }
+.hack__btn:hover { filter: brightness(1.04); }
 
 /* Empty state: no entries yet, so one card spans the grid and says so. */
 .hack--empty { grid-column: 1 / -1; }
@@ -832,7 +819,7 @@ main { position: relative; z-index: 1; }
    ============================================================ */
 /* Reveal animates the INDEPENDENT translate/scale properties (not `transform`)
    so a finished forwards-animation never clobbers hover/tilt `transform`. */
-.reveal { opacity: 0; translate: 0 30px; scale: 0.98; }
+.reveal { opacity: 0; translate: 0 16px; }
 .reveal.visible {
   animation: revealIn 0.7s var(--ease-spring) forwards;   /* overshoot-and-settle */
   animation-delay: var(--reveal-delay, 0ms);
@@ -851,7 +838,7 @@ main { position: relative; z-index: 1; }
 .hacks .hack:nth-child(3) { --reveal-delay: 160ms; }
 .hacks .hack:nth-child(4) { --reveal-delay: 240ms; }
 
-@keyframes revealIn { to { opacity: 1; translate: 0 0; scale: 1; } }
+@keyframes revealIn { to { opacity: 1; translate: 0 0; } }
 @keyframes caretBlink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
 
 /* ============================================================
