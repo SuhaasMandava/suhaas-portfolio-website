@@ -1,79 +1,51 @@
 # Suhaas Mandava — Portfolio
 
-A fast, responsive, dark-mode-friendly personal portfolio built with **plain HTML, CSS, and vanilla JavaScript**. No frameworks, no build step.
+This is the code behind [Suhaas Mandava's personal website](https://github.com/SuhaasMandava) — a portfolio page showing off projects, skills, hackathons, and some investment research write-ups.
 
-## Sections
-- **Hero** — name, title, intro, and social links
-- **About** — bio, tech stack, profile card
-- **Projects** — cards linking out to GitHub repos (+ optional live demos)
-- **Skills** — grouped by category
-- **Hackathons** — one card per event; shows a "looking for my first" card while empty
-- **Contact** — email CTA and socials
+It's built with plain web basics (HTML, CSS, JavaScript) — no fancy frameworks, no complicated build process. That keeps it simple, fast, and easy to host anywhere for free.
 
-## Run it
-Just open `index.html` in a browser. Or serve locally:
+## What's on the site
+- **Hero** — name, title, a short intro, and links to social profiles
+- **About** — a short bio, the tools/technologies used, and a profile card
+- **Projects** — cards that link out to GitHub projects (and live demos, when available)
+- **Skills** — organized into categories
+- **Hackathons** — one card per event competed in (shows a "looking for my first" placeholder until there's one to show)
+- **Contact** — a way to get in touch by email or social links
+- **Research** — a separate page with investment write-ups (currently on Anthropic and SpaceX) and a live stock ticker
 
-```bash
-# Python
-python -m http.server 8000
-# then visit http://localhost:8000
+## How to view it
+Just double-click `index.html` and it opens in your browser. That's it — no installation needed.
 
-# or with Node
-npx serve
-```
+## How to make changes
+Nearly everything you'd want to change lives in a predictable spot:
 
-## Customize
-All content lives in easy-to-edit places:
+| What you want to change | Where to find it |
+|---|---|
+| Projects shown | the projects list inside `script.js` |
+| Skills shown | the skills list inside `script.js` |
+| Hackathons shown | the hackathons list inside `script.js` |
+| Bio / about text | the "About" section of `index.html` |
+| Name, title, email, social links | `index.html` |
+| Colors / overall look | the top of `styles.css` |
 
-| What | Where |
-|------|-------|
-| Projects | `projects` array in `script.js` |
-| Skills | `skillGroups` array in `script.js` |
-| Hackathons | `hackathons` array in `script.js` (entry shape is documented above it) |
-| GitHub username | `GITHUB_USER` const in `script.js` |
-| Bio / about text | `#about` section in `index.html` |
-| Name, title, email, social URLs | `index.html` (hero + contact) |
-| Colors / theme | CSS variables at the top of `styles.css` |
+You don't need to know how to code to make small text edits — open the file in any text editor, find the words you want to change, and save.
 
-### Update your links
-Replace the placeholders before publishing:
-- `github.com/SuhaasMandava` → already set to the real GitHub
-- `linkedin.com/in/suhaas-mandava-247647365` → already set to the real LinkedIn
-- `hasumandava@gmail.com` → already set to the real contact email
+## Dark mode
+The site defaults to dark mode. Visitors can switch to light mode with the toggle in the navigation bar, and their choice is remembered the next time they visit. First-time visitors see whichever mode matches their device's setting.
 
-## Theme
-Dark mode is the default. The toggle in the navbar switches to light and remembers
-the choice in `localStorage`. First-time visitors get their OS preference
-(`prefers-color-scheme`).
+## Publishing the site
+This site can be hosted for free on services like **GitHub Pages**, **Netlify**, **Vercel**, or **Cloudflare Pages** — no server to manage. It's currently set up to deploy on **Vercel**.
 
-## Deploy
-Works as-is on any static host — **GitHub Pages**, Netlify, Vercel, or Cloudflare Pages.
-For GitHub Pages: push these files to a repo and enable Pages on the `main` branch.
+Two small pieces of the site (the GitHub activity feed and the stock ticker on the Research page) run a tiny bit of behind-the-scenes code on Vercel so that a private stock-data key never gets exposed to visitors' browsers. Everything else is just static pages.
 
-## Security
-This is a static site with no backend, so the surface is small. What's in place:
+## Keeping it secure
+Since this is a simple site with no login system or database, there isn't much that could go wrong — but a few protections are already in place:
+- Strict rules about what the browser is allowed to load, so it's harder to sneak in malicious scripts
+- No usernames, passwords, or private keys anywhere in the code visitors can see
+- Links to other websites open safely without leaking data about where the visitor came from
+- Extra protection (on Netlify/Vercel/Cloudflare, not GitHub Pages) against the site being embedded inside someone else's page without permission
 
-- **Content-Security-Policy** — a strict `<meta>` CSP in each HTML file restricts
-  scripts/styles to `self` plus the Google Fonts domains actually used. Because it
-  forbids inline styles/scripts, keep all CSS in `styles.css` and all JS in `script.js`
-  (no `style="..."` attributes or `<style>`/inline `<script>` blocks).
-- **Referrer-Policy** — `strict-origin-when-cross-origin` via `<meta>`, so full URLs
-  aren't leaked to sites you link to.
-- **Anti-framing** — enforced via **HTTP headers**, not meta tags: `X-Frame-Options: DENY`
-  and CSP `frame-ancestors 'none'`. ⚠️ These are *ignored* when set via `<meta>`, so they
-  live in [`_headers`](./_headers) (Netlify / Cloudflare Pages) and [`vercel.json`](./vercel.json)
-  (Vercel). **GitHub Pages does not support custom headers**, so on GitHub Pages the site
-  cannot block framing — use Netlify/Cloudflare/Vercel if that matters to you.
-- **No secrets** — there are no API keys, tokens, or secrets in the client bundle, and
-  there shouldn't be: anything shipped to the browser is public. Keep it that way.
-- **External links** use `rel="noopener noreferrer"` to prevent tab-nabbing.
-
-### Adding third-party scripts later
-If you add a library or analytics snippet:
-1. **Pin the exact version** — load `library@1.2.3`, never `library@latest`.
-2. Add **Subresource Integrity** (`integrity="sha384-..."` + `crossorigin="anonymous"`) for CDN scripts.
-3. **Update the CSP** in every HTML `<head>` *and* in `_headers` / `vercel.json` to
-   allow the new domain — otherwise the browser will block it.
+If you ever add a third-party script (like an analytics tool), double check with whoever maintains the code that the site's security rules get updated to allow it — otherwise the browser will silently block it.
 
 ## License
-Released under the [MIT License](./LICENSE) — free to use, copy, and adapt with attribution.
+Free to use, copy, and adapt — just give credit. See the [LICENSE](./LICENSE) file for the full terms.
