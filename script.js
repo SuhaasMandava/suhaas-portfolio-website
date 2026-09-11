@@ -254,58 +254,6 @@ function renderHackathons() {
 }
 
 // ==================================================================
-//  1. Custom cursor (dot + ring, eased follow)
-// ==================================================================
-function initCursor() {
-  if (reduceMotion() || isTouch()) return;
-  const dot = document.createElement("div");
-  const ring = document.createElement("div");
-  dot.className = "cursor-dot is-hidden";
-  ring.className = "cursor-ring is-hidden";
-  document.body.append(dot, ring);
-  document.body.classList.add("has-cursor");
-
-  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-  let rx = mx, ry = my;
-  let visible = false;
-  let raf = null;
-
-  // The ring eases toward the cursor; the loop self-terminates once it has
-  // caught up, so it isn't burning a frame every rAF while the mouse is idle.
-  const animateRing = () => {
-    rx = lerp(rx, mx, 0.2);
-    ry = lerp(ry, my, 0.2);
-    ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%, -50%)`;
-    if (Math.abs(mx - rx) > 0.1 || Math.abs(my - ry) > 0.1) {
-      raf = requestAnimationFrame(animateRing);
-    } else {
-      raf = null;
-    }
-  };
-
-  window.addEventListener("mousemove", (e) => {
-    mx = e.clientX; my = e.clientY;
-    if (!visible) { visible = true; dot.classList.remove("is-hidden"); ring.classList.remove("is-hidden"); }
-    // Dot tracks 1:1 (a single cheap transform write per event, no layout read).
-    dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%, -50%)`;
-    if (!raf) raf = requestAnimationFrame(animateRing);
-  }, { passive: true });
-
-  window.addEventListener("mouseout", (e) => {
-    if (!e.relatedTarget) { dot.classList.add("is-hidden"); ring.classList.add("is-hidden"); visible = false; }
-  });
-
-  // Grow the ring over interactive targets.
-  const interactive = "a, button, [data-magnetic], [data-tilt], .feature, .stat, .skill-card, input, textarea";
-  document.addEventListener("mouseover", (e) => {
-    if (e.target.closest(interactive)) ring.classList.add("is-hover");
-  }, { passive: true });
-  document.addEventListener("mouseout", (e) => {
-    if (e.target.closest(interactive)) ring.classList.remove("is-hover");
-  }, { passive: true });
-}
-
-// ==================================================================
 //  2. Magnetic buttons (spring pull toward cursor)
 // ==================================================================
 function initMagnetic() {
@@ -869,6 +817,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroBackground();  // 7
   initTilt();            // 5
   initMagnetic();        // 2
-  initCursor();          // 1
+  // Custom cursor is now the WebGL glow trail in glow-cursor.js (self-initializing).
   // 9 (smooth scroll) is now native (see note above); no JS needed.
 });
