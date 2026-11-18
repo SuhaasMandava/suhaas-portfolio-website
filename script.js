@@ -64,10 +64,28 @@ const skillGroups = [
 const experience = [
   { range: "Late 2024", duration: "", org: "Started coding", role: "Wrote my first lines of code and got hooked" },
   { range: "Recently", duration: "", org: "Completed CS50", role: "Harvard's Intro to Computer Science" },
-  { range: "Now", duration: "", org: "Geo IT Labs", role: "Working part-time", url: "https://geoitlabs.com", active: true },
-  { range: "Now", duration: "", org: "AP Computer Science A", role: "Taking CS coursework in high school" },
+  {
+    range: "Jun 2026 – Present", duration: "Remote · Atlanta Metro", org: "GEO IT Labs", url: "https://geoitlabs.com", active: true,
+    role: "Junior Software Engineer",
+    points: [
+      ["Software development & web maintenance", "Develop, update, and maintain responsive web apps, managing database records and digital assets."],
+      ["Quality assurance & testing", "Run QA test plans and bug-tracking workflows to find edge cases and validate fixes."],
+      ["Product delivery & documentation", "Write technical docs, user guides, and deployment notes for releases and onboarding."],
+      ["Technical research & evaluation", "Research developer tools, frameworks, and competitor platforms to bring in best practices."],
+    ],
+  },
   { range: "Aug 2026", duration: "", org: "DreamHacks 2026", role: "First hackathon; built OneIsland" },
+  { range: "Now", duration: "", org: "VEX V5 Robotics, Team 1235C", role: "Programming lead" },
+  { range: "Now", duration: "", org: "FBLA", role: "Competing in Mobile Application Development" },
+  { range: "Now", duration: "", org: "AP Computer Science A", role: "Taking CS coursework in high school" },
   { range: "Next", duration: "", org: "More hackathons & internships", role: "Open to them and looking" },
+];
+
+// ---- Education & certifications -----------------------------------
+const education = [
+  { range: "Aug 2025 – May 2029", duration: "10th grade", org: "West Forsyth High School", role: "Computer Science · TSA, FBLA, VEX V5 Robotics", active: true },
+  { range: "Sep 2026", duration: "Anthropic", org: "Claude Academy: Claude 101", role: "Certificate of completion", url: "https://academy.claude.com/verify/e63e88fb2a044400dac80238f7f0994b" },
+  { range: "Mar 2026", duration: "Microsoft", org: "Microsoft Office Specialist", role: "Certification, valid through Mar 2031" },
 ];
 
 // ---- Hackathons --------------------------------------------------
@@ -100,7 +118,7 @@ const hackathons = [
 ];
 
 // ---- Typing effect roles -----------------------------------------
-const typedRoles = ["Student Developer", "Self-Taught Coder", "Smart Home Tinkerer", "Aspiring AI Engineer"];
+const typedRoles = ["Aspiring SWE", "Junior Software Engineer", "Robotics Programmer", "Student Developer"];
 
 // ---- Icons -------------------------------------------------------
 const iconGithub = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.39 1.24-3.23-.13-.31-.54-1.53.12-3.19 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.19.77.84 1.24 1.92 1.24 3.23 0 4.62-2.81 5.64-5.49 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>`;
@@ -183,9 +201,14 @@ function renderSkills() {
 }
 
 function renderExperience() {
-  const list = document.getElementById("expList");
+  renderTimeline("expList", experience);
+  renderTimeline("eduList", education);
+}
+
+function renderTimeline(id, rows) {
+  const list = document.getElementById(id);
   if (!list) return;
-  list.innerHTML = experience
+  list.innerHTML = rows
     .map((e) => {
       const org = e.url
         ? `<a href="${escapeHtml(e.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(e.org)}</a>`
@@ -197,7 +220,13 @@ function renderExperience() {
           ${e.duration ? `<span class="exp__dur">${escapeHtml(e.duration)}</span>` : ""}
         </div>
         <div class="exp__org">${org}</div>
-        <div class="exp__role">${escapeHtml(e.role)}</div>
+        <div class="exp__role">${escapeHtml(e.role)}${
+          e.points
+            ? `<ul class="exp__points">${e.points
+                .map(([t, d]) => `<li><strong>${escapeHtml(t)}.</strong> ${escapeHtml(d)}</li>`)
+                .join("")}</ul>`
+            : ""
+        }</div>
       </div>`;
     })
     .join("");
@@ -810,13 +839,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCardLinks();       // whole project card / activity row is clickable
 
   initTyping();          // 3
-  initScrollProgress();  // 4
-  initCounters();        // 8
   initScrollSpy();       // 10
-  initHeroVideo();       // background video (deferred)
-  initHeroBackground();  // 7
-  initTilt();            // 5
-  initMagnetic();        // 2
-  // Custom cursor is now the WebGL glow trail in glow-cursor.js (self-initializing).
+  // Minimal design: no custom cursor, tilt, magnetic buttons, hero video or scroll bar.
   // 9 (smooth scroll) is now native (see note above); no JS needed.
 });

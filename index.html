@@ -8,7 +8,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Suhaas Mandava, high school student and software developer. Projects, skills, experience, and contact." />
+  <meta name="description" content="Suhaas Mandava, sophomore at West Forsyth High School, aspiring software engineer, and Junior Software Engineer at GEO IT Labs. Projects, experience, education, and contact." />
   <title>Suhaas Mandava Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,13 +17,11 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080809'/><text x='50' y='50' font-family='monospace' font-size='48' font-weight='800' fill='%23e8e8ec' text-anchor='middle' dominant-baseline='central'>SM</text></svg>" />
 </head>
 <body>
-  <!-- Scroll progress bar -->
-  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 
   <!-- Navbar -->
   <header class="nav" id="nav">
     <div class="nav__inner container">
-      <a href="#top" class="nav__brand" data-magnetic>Suhaas<br />Mandava<span class="nav__dot">_</span></a>
+      <a href="#top" class="nav__brand">Suhaas<br />Mandava<span class="nav__dot">_</span></a>
       <nav class="nav__links" id="navLinks">
         <a href="#about" data-nav="about">About</a>
         <a href="#projects" data-nav="projects">Projects</a>
@@ -44,29 +42,18 @@
   <main class="container" id="top">
     <!-- ===== Hero ===== -->
     <section class="hero">
-      <!-- Background video. Source is set by JS (deferred) so it never blocks
-           first paint; a CSS gradient shows until the first frame is ready and
-           for reduced-motion / no-JS visitors. -->
-      <div class="hero__media" aria-hidden="true">
-        <video class="hero__video" id="heroVideo" muted loop playsinline preload="none" tabindex="-1" disablepictureinpicture>
-          <source data-src="assets/Laptop_opening_video.mp4" type="video/mp4" />
-        </video>
-        <div class="hero__scrim"></div>
-      </div>
-      <canvas class="hero__grid" id="heroGrid" aria-hidden="true"></canvas>
-      <div class="hero__glow" id="heroGlow" aria-hidden="true"></div>
       <div class="hero__content">
         <p class="hero__kicker reveal">Hi, I'm Suhaas Mandava</p>
         <h1 class="display hero__title reveal">
           <span class="type" id="typeTarget">Student Developer</span><span class="type-caret" aria-hidden="true"></span>
         </h1>
         <p class="hero__lead reveal">
-          I started coding in late 2024 and I've been learning ever since. I'm a
-          high school student who cares about writing <em>clean, thoughtful code</em>,
-          not just finishing projects.
+          Sophomore at West Forsyth High School and aspiring software engineer
+          from Cumming, Georgia. I'm a Junior Software Engineer at GEO IT Labs, and
+          I care about writing <em>clean, thoughtful code</em>, not just finishing projects.
         </p>
         <div class="hero__actions reveal">
-          <a href="#projects" class="cta" data-magnetic>
+          <a href="#projects" class="cta">
             <span class="cta__pill">View Projects</span>
             <span class="cta__arrow" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -74,19 +61,19 @@
           </a>
         </div>
         <div class="social-row reveal">
-          <a class="pill" href="https://github.com/SuhaasMandava" target="_blank" rel="noopener noreferrer" data-magnetic>
+          <a class="pill" href="https://github.com/SuhaasMandava" target="_blank" rel="noopener noreferrer">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.39 1.24-3.23-.13-.31-.54-1.53.12-3.19 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.19.77.84 1.24 1.92 1.24 3.23 0 4.62-2.81 5.64-5.49 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12.01 12.01 0 0 0 24 12.5C24 5.87 18.63.5 12 .5z"/></svg>
             GitHub
           </a>
-          <a class="pill" href="https://www.linkedin.com/in/suhaas-mandava-247647365/" target="_blank" rel="noopener noreferrer" data-magnetic>
+          <a class="pill" href="https://www.linkedin.com/in/suhaas-mandava/" target="_blank" rel="noopener noreferrer">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
             LinkedIn
           </a>
-          <a class="pill" href="https://www.instagram.com/suhaasmandava/" target="_blank" rel="noopener noreferrer" data-magnetic>
+          <a class="pill" href="https://www.instagram.com/suhaasmandava/" target="_blank" rel="noopener noreferrer">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
             Instagram
           </a>
-          <a class="pill" href="mailto:hasumandava@gmail.com" data-magnetic>
+          <a class="pill" href="mailto:hasumandava@gmail.com">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
             Email
           </a>
@@ -94,13 +81,6 @@
       </div>
     </section>
 
-    <!-- ===== Stats ===== -->
-    <section class="stats" aria-label="Quick stats">
-      <div class="stat reveal"><span class="stat__num">2024</span><span class="stat__label">Started coding</span></div>
-      <div class="stat reveal"><span class="stat__num" data-count="1">0</span><span class="stat__label">CS50 completed</span></div>
-      <div class="stat reveal"><span class="stat__num" data-count="3">0</span><span class="stat__label">Languages I use most</span></div>
-      <div class="stat reveal"><span class="stat__num" data-count="2">0</span><span class="stat__label">Sites shipped</span></div>
-    </section>
 
     <!-- ===== GitHub activity =====
          Populated by initGithub() from the same-origin /api/github function.
@@ -126,13 +106,13 @@
       </div>
 
       <div class="carousel reveal">
-        <button class="icon-circle carousel__nav" id="carouselPrev" aria-label="Previous project" data-magnetic>
+        <button class="icon-circle carousel__nav" id="carouselPrev" aria-label="Previous project">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
         </button>
         <div class="carousel__track" id="carouselTrack">
           <!-- Feature cards injected by script.js -->
         </div>
-        <button class="icon-circle carousel__nav" id="carouselNext" aria-label="Next project" data-magnetic>
+        <button class="icon-circle carousel__nav" id="carouselNext" aria-label="Next project">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
       </div>
@@ -157,14 +137,22 @@
             Intro to Computer Science) was one of my first real milestones.
           </p>
           <p>
-            Right now I'm in high school taking AP Computer Science A, and I
-            recently started working part-time at
-            <a href="https://geoitlabs.com" target="_blank" rel="noopener noreferrer">Geo IT Labs</a>.
+            Right now I'm a sophomore at West Forsyth High School studying
+            computer science, and since June 2026 I've worked remotely as a
+            Junior Software Engineer at
+            <a href="https://geoitlabs.com" target="_blank" rel="noopener noreferrer">GEO IT Labs</a>,
+            where I build and maintain web apps, run QA testing, and write
+            technical documentation.
             A lot of my learning still happens on my own time too: building small
             projects and taking things apart to see how they work. I care less
             about just finishing something and more about finding cleaner, smarter
             ways to write it. Learning to think about code well is the part I
             actually enjoy.
+          </p>
+          <p>
+            At school I'm the programming lead for <em>VEX V5 Robotics team 1235C</em>,
+            I'm competing in the <em>Mobile Application Development</em> event for
+            FBLA, and I'm a member of TSA.
           </p>
           <p>
             Away from the screen, I'm also a bit of a smart home enthusiast. I run
@@ -177,10 +165,8 @@
             <p>Working toward <em>Georgia Tech</em>, with the long-term goal of building a career in <em>AI engineering</em>. That's the direction all of this is pointing.</p>
           </div>
         </div>
-        <!-- Swap this monogram frame for a real photo later: drop photo.jpg next to
-             index.html and set the frame's background image (img-src 'self' already allows it). -->
         <div class="about__photo reveal">
-          <div class="photo-frame" data-tilt><span>SM</span></div>
+          <img class="portrait" src="assets/suhaas-portrait.png" width="760" height="877" alt="Portrait of Suhaas Mandava in a navy suit and tie" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
@@ -208,6 +194,17 @@
       <p class="exp__total reveal">Coding since <em>late 2024</em>, and just getting started.</p>
     </section>
 
+    <!-- ===== Education & certifications ===== -->
+    <section class="section" id="education">
+      <div class="section__head reveal">
+        <p class="eyebrow">Education</p>
+        <h2 class="display display--section">School &amp; certifications</h2>
+      </div>
+      <div class="exp" id="eduList">
+        <!-- Rows injected by script.js -->
+      </div>
+    </section>
+
     <!-- ===== Hackathons ===== -->
     <section class="section" id="hackathons">
       <div class="section__head reveal">
@@ -230,17 +227,17 @@
           My inbox is open.
         </p>
       </div>
-      <a href="mailto:hasumandava@gmail.com" class="cta cta--center reveal" data-magnetic>
+      <a href="mailto:hasumandava@gmail.com" class="cta cta--center reveal">
         <span class="cta__pill">Say Hello</span>
         <span class="cta__arrow" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </span>
       </a>
       <div class="social-row social-row--center reveal">
-        <a class="pill" href="https://github.com/SuhaasMandava" target="_blank" rel="noopener noreferrer" data-magnetic>GitHub</a>
-        <a class="pill" href="https://www.linkedin.com/in/suhaas-mandava-247647365/" target="_blank" rel="noopener noreferrer" data-magnetic>LinkedIn</a>
-        <a class="pill" href="https://www.instagram.com/suhaasmandava/" target="_blank" rel="noopener noreferrer" data-magnetic>Instagram</a>
-        <a class="pill" href="mailto:hasumandava@gmail.com" data-magnetic>Email</a>
+        <a class="pill" href="https://github.com/SuhaasMandava" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="pill" href="https://www.linkedin.com/in/suhaas-mandava/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="pill" href="https://www.instagram.com/suhaasmandava/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="pill" href="mailto:hasumandava@gmail.com">Email</a>
       </div>
     </section>
   </main>
@@ -253,7 +250,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script type="module" src="glow-cursor.js"></script>
 
   <!-- Vercel Speed Insights (performance) + Web Analytics (traffic). Same-origin
        and cookieless; these routes only exist on the Vercel deployment. -->

@@ -288,3 +288,8 @@
   /* "Valuation" is the longest tile value and still breaks mid-word above. */
   .mkt-tile__val { font-size: 1.15rem; }
 }
+
+/* ---- Minimal pass: flat panels, no lifts or glows ---- */
+.mkt-tile, .feat-card, .overview, .kp-card, .paper-cta { background: var(--panel); }
+.feat-card:hover, .kp-card:hover, .rsrch-btn:hover { transform: none; box-shadow: none; }
+.panel__dot { box-shadow: none; animation: none; }
