@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <!-- Content Security Policy: only self-hosted scripts/styles + the Google Fonts we actually use.
        Note: frame-ancestors is intentionally omitted here because it is IGNORED in a <meta> CSP;
-       anti-framing is enforced via HTTP headers instead (see _headers / vercel.json). -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
+       anti-framing is enforced via HTTP headers instead (see _headers). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Suhaas Mandava, sophomore at West Forsyth High School, aspiring software engineer, and Junior Software Engineer at GEO IT Labs. Projects, experience, education, and contact." />
@@ -251,9 +251,5 @@
 
   <script src="script.js"></script>
 
-  <!-- Vercel Speed Insights (performance) + Web Analytics (traffic). Same-origin
-       and cookieless; these routes only exist on the Vercel deployment. -->
-  <script defer src="/_vercel/speed-insights/script.js"></script>
-  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

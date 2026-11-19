@@ -18,3 +18,8 @@ desktop.ini
 # Local tooling (not site code)
 .claude/
 design-system/
+
+# Cloudflare Pages build output and local state
+dist/
+.wrangler/
+.dev.vars

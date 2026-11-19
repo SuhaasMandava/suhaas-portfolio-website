@@ -34,9 +34,9 @@ You don't need to know how to code to make small text edits — open the file in
 The site defaults to dark mode. Visitors can switch to light mode with the toggle in the navigation bar, and their choice is remembered the next time they visit. First-time visitors see whichever mode matches their device's setting.
 
 ## Publishing the site
-This site can be hosted for free on services like **GitHub Pages**, **Netlify**, **Vercel**, or **Cloudflare Pages** — no server to manage. It's currently set up to deploy on **Vercel**.
+This site can be hosted for free on services like **GitHub Pages**, **Netlify**, **Vercel**, or **Cloudflare Pages** — no server to manage. It's set up to deploy on **Cloudflare Pages** (free plan): build command `node scripts/build.mjs`, output folder `dist`.
 
-Two small pieces of the site (the GitHub activity feed and the stock ticker on the Research page) run a tiny bit of behind-the-scenes code on Vercel so that a private stock-data key never gets exposed to visitors' browsers. Everything else is just static pages.
+Two small pieces of the site (the GitHub activity feed and the stock ticker on the Research page) run a tiny bit of behind-the-scenes code on Cloudflare (in the `functions` folder) so that a private stock-data key never gets exposed to visitors' browsers. Everything else is just static pages.
 
 ## Keeping it secure
 Since this is a simple site with no login system or database, there isn't much that could go wrong — but a few protections are already in place:

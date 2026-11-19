@@ -1,0 +1,5 @@
+# Cloudflare Pages project config.
+# Build command: node scripts/build.mjs   Output directory: dist
+name = "suhaas"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-11-01"

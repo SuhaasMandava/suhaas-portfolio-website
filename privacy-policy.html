@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'; manifest-src 'self'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Privacy Policy for Suhaas Mandava's personal portfolio site." />
@@ -51,7 +51,7 @@
         <li>No forms or user-submitted content.</li>
         <li>No cookies, including the analytics (it is cookieless).</li>
         <li>No personal information is collected about you.</li>
-        <li>Privacy-friendly, aggregate-only analytics (Vercel) for traffic and performance.</li>
+        <li>Privacy-friendly, aggregate-only analytics (Cloudflare) for traffic and performance.</li>
         <li>The research page shows live stock prices, but your browser never contacts the market data provider. My server does that for you.</li>
         <li>AI-generated media is disclosed separately, in its own section below.</li>
       </ul>
@@ -98,9 +98,9 @@
 
       <h2>Analytics</h2>
       <p>
-        This site uses Vercel Web Analytics and Vercel Speed Insights to understand
+        This site uses Cloudflare Web Analytics to understand
         how many people visit, which pages are popular, and how well the site
-        performs. These tools are cookieless and collect only anonymized, aggregated
+        performs. It is cookieless and collect only anonymized, aggregated
         data, such as page views, referrers, browser and device type, approximate
         (city or country level) location derived from your IP address, and
         performance metrics like page load speed. This data is never used to identify
@@ -150,9 +150,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <!-- Vercel Speed Insights (performance) + Web Analytics (traffic). Same-origin
-       and cookieless; these routes only exist on the Vercel deployment. -->
-  <script defer src="/_vercel/speed-insights/script.js"></script>
-  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
